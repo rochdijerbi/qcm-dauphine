@@ -1,6 +1,7 @@
 package fr.dauphine.qcm.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,40 +10,40 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
 @MappedSuperclass
-public class AbstractEntity<T extends Serializable> implements Serializable {
+public abstract class AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = -8796045861878061257L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
-	private T id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	@Version
-	private Long version;
+	private Date version;
 
-	public void setId(T id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public T getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setVersion(Long version) {
+	public void setVersion(Date version) {
 		this.version = version;
 	}
 
-	public Long getVersion() {
+	public Date getVersion() {
 		return version;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return obj != null && (obj instanceof AbstractEntity<?>)
-				&& equals((AbstractEntity<?>) obj);
+		return obj != null && (obj instanceof AbstractEntity)
+				&& equals((AbstractEntity) obj);
 	}
 
-	private boolean equals(AbstractEntity<?> entity) {
+	private boolean equals(AbstractEntity entity) {
 		return getId() != null && entity.getId() != null
 				&& equals(getId().equals(entity.getId()));
 	}
