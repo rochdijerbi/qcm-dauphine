@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import org.apache.commons.beanutils.BeanPropertyValueEqualsPredicate;
 import org.hibernate.validator.constraints.NotBlank;
 
+
 @Entity
 public class Question extends AbstractEntity {
 
@@ -63,5 +64,10 @@ public class Question extends AbstractEntity {
 	public Answer getCorrectAnswer() {
 		return (Answer) find(getAnswers(),
 				new BeanPropertyValueEqualsPredicate("correct", true));
+	}
+	
+	@Override
+	public String toString() {
+		return getLabel();
 	}
 }

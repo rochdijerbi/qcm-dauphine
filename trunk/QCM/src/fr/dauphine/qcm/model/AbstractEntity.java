@@ -16,7 +16,7 @@ public abstract class AbstractEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long id = null;
 
 	@Version
 	private Date version;
@@ -45,7 +45,7 @@ public abstract class AbstractEntity implements Serializable {
 
 	private boolean equals(AbstractEntity entity) {
 		return getId() != null && entity.getId() != null
-				&& equals(getId().equals(entity.getId()));
+				&& getId().equals(entity.getId());
 	}
 
 	@Override

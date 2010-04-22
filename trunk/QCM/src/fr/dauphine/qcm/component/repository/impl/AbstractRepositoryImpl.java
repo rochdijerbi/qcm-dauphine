@@ -82,6 +82,7 @@ public abstract class AbstractRepositoryImpl<T extends AbstractEntity>
 	 * {@inheritDoc}
 	 */
 	public void delete(T entity) {
+		
 		getCurrentSession().delete(entity);
 	}
 
