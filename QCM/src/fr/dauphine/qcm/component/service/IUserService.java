@@ -1,10 +1,13 @@
 package fr.dauphine.qcm.component.service;
 
-import java.util.List;
-
+import fr.dauphine.qcm.exception.FunctionalException;
 import fr.dauphine.qcm.model.User;
 
 public interface IUserService {
 
-	public List<User> getAll();
+	User checkCredentials(User user) throws FunctionalException;
+
+	User createAccount(User user) throws FunctionalException;
+
+	User getById(Long id);
 }
