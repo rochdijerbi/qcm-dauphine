@@ -1,12 +1,13 @@
 package fr.dauphine.qcm.component.repository.impl;
 
+import org.apache.commons.collections.Closure;
+import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import fr.dauphine.qcm.closure.RefreshClosure;
 import fr.dauphine.qcm.component.repository.IResultRepository;
-import fr.dauphine.qcm.model.Answer;
 import fr.dauphine.qcm.model.Result;
 
 @Repository
@@ -22,21 +23,15 @@ public final class ResultRepositoryImpl extends AbstractRepositoryImpl<Result>
 
 		return (Result) criteria.uniqueResult();
 	}
-	
+
 	@Override
-	public void save(Result result) {
-		refreshBeforeSave(result);
-		super.save(result);
-	}
-	
-	private void refreshBeforeSave(Result result) {
-		Session session = getCurrentSession();
-		
-		session.refresh(result.getQuestionnaire());
-		session.refresh(result.getUser());
-		
-		for (Answer answer : result.getAnswers()) {
-			session.refresh(answer);
-		}
+	public Result save(Result result) {
+		Closure refreshClosure = new RefreshClosure(getCurrentSession());
+
+		refreshClosure.execute(result.getUser());
+		refreshClosure.execute(result.getQuestionnaire());
+		CollectionUtils.forAllDo(result.getAnswers(), refreshClosure);
+
+		return super.save(result);
 	}
 }

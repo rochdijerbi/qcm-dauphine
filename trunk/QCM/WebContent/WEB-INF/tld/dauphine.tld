@@ -13,7 +13,7 @@
       Tests if a collection contains an object.
     </description>
     <name>contains</name>
-    <function-class>fr.dauphine.qcm.util.Functions</function-class>
+    <function-class>fr.dauphine.qcm.taglib.Functions</function-class>
     <function-signature>boolean contains(java.util.Collection, java.lang.Object)</function-signature>
     <example>
       &lt;c:if test="${dauphine:contains(collection, object)}">

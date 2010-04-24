@@ -60,8 +60,11 @@ public abstract class AbstractRepositoryImpl<T extends AbstractEntity>
 	/**
 	 * {@inheritDoc}
 	 */
-	public void save(T entity) {
-		getCurrentSession().save(entity);
+	public T save(T entity) {
+		Long id = (Long) getCurrentSession().save(entity);
+		entity.setId(id);
+		
+		return entity;
 	}
 
 	/**
@@ -82,7 +85,6 @@ public abstract class AbstractRepositoryImpl<T extends AbstractEntity>
 	 * {@inheritDoc}
 	 */
 	public void delete(T entity) {
-		
 		getCurrentSession().delete(entity);
 	}
 
@@ -98,6 +100,13 @@ public abstract class AbstractRepositoryImpl<T extends AbstractEntity>
 	 */
 	public void refresh(T entity) {
 		getCurrentSession().refresh(entity);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public T merge(T entity) {
+		return (T) getCurrentSession().merge(entity);
 	}
 
 	/**
