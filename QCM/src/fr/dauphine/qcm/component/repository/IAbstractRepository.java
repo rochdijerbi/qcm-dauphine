@@ -27,7 +27,7 @@ public interface IAbstractRepository<T> {
 	 */
 	public T load(Serializable primaryKey);
 
-	public void save(T entity);
+	public T save(T entity);
 
 	public void saveOrUpdate(T entity);
 
@@ -38,5 +38,7 @@ public interface IAbstractRepository<T> {
 	public void evict(T entity);
 
 	public void refresh(T entity);
+	
+	public T merge(T entity);
 
 }

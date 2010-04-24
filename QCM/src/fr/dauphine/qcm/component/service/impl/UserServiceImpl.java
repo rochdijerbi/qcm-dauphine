@@ -44,16 +44,13 @@ public class UserServiceImpl implements IUserService {
 	@Transactional
 	public User createAccount(User user) throws FunctionalException {
 		User databaseUser = userRepository.loadByLogin(user.getLogin());
-		String passwordHash = shaHex(user.getPassword());
-
+		
 		if (databaseUser != null) {
 			throw new FunctionalException("login already registered");
 		}
 
-		user.setPassword(passwordHash);
-		userRepository.save(user);
-		
-		return user;
+		user.setPassword(shaHex(user.getPassword()));
+		return userRepository.save(user);
 	}
 
 	@Override

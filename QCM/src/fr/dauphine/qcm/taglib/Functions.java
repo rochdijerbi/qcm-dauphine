@@ -1,4 +1,4 @@
-package fr.dauphine.qcm.util;
+package fr.dauphine.qcm.taglib;
 
 import java.util.Collection;
 
