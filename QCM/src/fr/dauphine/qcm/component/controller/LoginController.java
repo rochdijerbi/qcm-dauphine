@@ -18,21 +18,42 @@ import fr.dauphine.qcm.component.service.IUserService;
 import fr.dauphine.qcm.exception.FunctionalException;
 import fr.dauphine.qcm.model.User;
 
+/**
+ * Page de connexion
+ */
 @Controller
-@RequestMapping(value = "/login.do")
+@RequestMapping("/login")
 public class LoginController {
 
+	/**
+	 * Service User
+	 */
 	@Autowired
 	private IUserService userService;
 
+	/**
+	 * Affiche la page de connexion
+	 * 
+	 * @return La vue et le modèle (un utilisateur vide)
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelMap displayLoginPage() {
 		return new ModelMap("user", new User());
 	}
 
+	/**
+	 * Traite le formulaire de connexion
+	 * 
+	 * @param user
+	 *            Formulaire
+	 * @param result
+	 *            Résultat de traitement du formulaire
+	 * @param session
+	 *            Session web
+	 * @return La vue à afficher
+	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String handleLoginForm(
-			@Valid @ModelAttribute(value = "user") User user,
+	public String handleLoginForm(@Valid @ModelAttribute("user") User user,
 			BindingResult result, HttpSession session) {
 		String view = "login";
 

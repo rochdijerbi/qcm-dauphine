@@ -10,9 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -21,20 +21,20 @@ import fr.dauphine.qcm.model.Result;
 import fr.dauphine.qcm.model.User;
 
 @Controller
-@RequestMapping(value = "/questionnaire.do")
-@SessionAttributes(value = { "result" })
+@RequestMapping("/questionnaire/{id}")
+@SessionAttributes("result")
 public class QuestionnaireController {
 
 	@Autowired
 	private IQuestionnaireService questionnaireService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String displayQuestionnairePage(@RequestParam(value = "id") Long id,
+	public String displayQuestionnairePage(@PathVariable("id") Long id,
 			HttpSession session, ModelMap model) {
 		User user = getUser(session);
 
 		if (user == null) {
-			return "redirect:/login.do";
+			return "redirect:/login";
 
 		} else {
 			Result result = new Result();
@@ -49,7 +49,7 @@ public class QuestionnaireController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String processAnswersForm(
-			@Valid @ModelAttribute(value = "result") Result result,
+			@Valid @ModelAttribute("result") Result result,
 			BindingResult binding, SessionStatus status, HttpSession session) {
 
 		if (binding.hasErrors()) {
@@ -60,7 +60,7 @@ public class QuestionnaireController {
 			getUser(session).incrementResultsSize();
 			status.setComplete();
 
-			return "redirect:/result.do?id=" + result.getQuestionnaire().getId();
+			return "redirect:/result/" + result.getQuestionnaire().getId();
 		}
 	}
 }

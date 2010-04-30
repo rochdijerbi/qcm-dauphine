@@ -19,7 +19,7 @@ import fr.dauphine.qcm.exception.FunctionalException;
 import fr.dauphine.qcm.model.User;
 
 @Controller
-@RequestMapping(value = "/signup.do")
+@RequestMapping("/signup")
 public class SignupController {
 
 	@Autowired
@@ -32,7 +32,7 @@ public class SignupController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String handleSignupForm(
-			@Valid @ModelAttribute(value = "user") User user,
+			@Valid @ModelAttribute("user") User user,
 			BindingResult result, HttpSession session) {
 		String view = "signup";
 
