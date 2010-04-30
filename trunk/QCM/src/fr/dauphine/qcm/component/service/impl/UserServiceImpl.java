@@ -53,17 +53,22 @@ public class UserServiceImpl implements IUserService {
 		return userRepository.save(user);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public User getById(Long id) {
 		User user = userRepository.load(id);
 		
-		for (Result result : user.getResults()) {
-			result.getQuestionnaire().getQuestions().size(); // Lazy
+		if (user != null) {
+			for (Result result : user.getResults()) {
+				result.getQuestionnaire().getQuestions().size(); // Lazy
+			}
+	
+			// Les meilleurs scores en premier
+			Collections.sort(user.getResults());
 		}
-		
-		// Les meilleurs scores en premier
-		Collections.sort(user.getResults());
 		
 		return user;
 	}
