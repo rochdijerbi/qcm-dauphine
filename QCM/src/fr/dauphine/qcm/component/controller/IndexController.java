@@ -16,7 +16,6 @@ public class IndexController {
 	 */
 	@RequestMapping("/")
 	public String displayIndexPage() {
-		// test
 		return "index";
 	}
 }

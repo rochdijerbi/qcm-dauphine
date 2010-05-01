@@ -11,7 +11,6 @@ public final class QuestionnaireRepositoryImpl extends
 		AbstractRepositoryImpl<Questionnaire> implements
 		IQuestionnaireRepository {
 
-	@Override
 	public Questionnaire loadForUser(Long questionnaireId, Long userId) {
 		Query query = getCurrentSession()
 				.createQuery(
