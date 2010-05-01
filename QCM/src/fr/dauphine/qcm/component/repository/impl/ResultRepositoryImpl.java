@@ -14,6 +14,7 @@ import fr.dauphine.qcm.model.Result;
 public final class ResultRepositoryImpl extends AbstractRepositoryImpl<Result>
 		implements IResultRepository {
 
+	@Override
 	public Result loadByUserIdAndQuestionnaireId(Long userId,
 			Long questionnaireId) {
 		Criteria criteria = getCurrentSession().createCriteria(Result.class);

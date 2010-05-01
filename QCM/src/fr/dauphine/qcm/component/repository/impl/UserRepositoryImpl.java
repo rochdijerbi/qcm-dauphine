@@ -11,6 +11,7 @@ import fr.dauphine.qcm.model.User;
 public final class UserRepositoryImpl extends AbstractRepositoryImpl<User>
 		implements IUserRepository {
 
+	@Override
 	public User loadByLogin(String login) {
 		Criteria criteria = getCurrentSession().createCriteria(User.class);
 		criteria.add(Restrictions.eq("login", login));

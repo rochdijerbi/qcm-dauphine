@@ -26,6 +26,7 @@ public class RefreshClosure implements Closure {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void execute(Object entity) {
 		session.refresh(entity);
 	}
