@@ -17,18 +17,19 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import fr.dauphine.qcm.component.service.IQuestionnaireService;
+import fr.dauphine.qcm.model.Questionnaire;
 import fr.dauphine.qcm.model.Result;
+import fr.dauphine.qcm.model.Tag;
 import fr.dauphine.qcm.model.User;
 
 @Controller
-@RequestMapping("/questionnaire/{id}")
-@SessionAttributes("result")
+@SessionAttributes( { "result", "questionnaire" })
 public class QuestionnaireController {
 
 	@Autowired
 	private IQuestionnaireService questionnaireService;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/questionnaire/{id}", method = RequestMethod.GET)
 	public String displayQuestionnairePage(@PathVariable("id") Long id,
 			HttpSession session, ModelMap model) {
 		User user = getUser(session);
@@ -39,15 +40,15 @@ public class QuestionnaireController {
 		} else {
 			Result result = new Result();
 			result.setUser(user);
-			result.setQuestionnaire(questionnaireService.getQuestionnaireById(
-					id, user));
+			result.setQuestionnaire(questionnaireService
+					.getQuestionnaireByIdAndUser(id, user));
 
 			model.put("result", result);
 			return "questionnaire/view";
 		}
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/questionnaire/{id}", method = RequestMethod.POST)
 	public String processAnswersForm(
 			@Valid @ModelAttribute("result") Result result,
 			BindingResult binding, SessionStatus status, HttpSession session) {
@@ -62,5 +63,70 @@ public class QuestionnaireController {
 
 			return "redirect:/result/" + result.getQuestionnaire().getId();
 		}
+	}
+
+	@RequestMapping(value = "/questionnaire/create", method = RequestMethod.GET)
+	public String displayQuestionnaireCreationPage(HttpSession session,
+			ModelMap model) {
+		User user = getUser(session);
+
+		if (user == null || !user.isAdmin()) {
+			return "redirect:/login";
+
+		} else {
+			model.put("questionnaire", Questionnaire.createEmpty());
+			return "questionnaire/edit";
+		}
+	}
+
+	@RequestMapping(value = "/questionnaire/{id}/edit", method = RequestMethod.GET)
+	public String displayQuestionnaireEditionPage(@PathVariable("id") Long id,
+			HttpSession session, ModelMap model) {
+		User user = getUser(session);
+
+		if (user == null || !user.isAdmin()) {
+			return "redirect:/login";
+
+		} else {
+			model.put("questionnaire", questionnaireService
+					.getQuestionnaireById(id));
+
+			return "questionnaire/edit";
+		}
+	}
+
+	@RequestMapping(value = { "/questionnaire/create",
+			"/questionnaire/{id}/edit" }, method = RequestMethod.POST)
+	public String handleQuestionnaireCreationAndModificationForm(
+			@Valid @ModelAttribute("questionnaire") Questionnaire questionnaire,
+			BindingResult binding, SessionStatus status) {
+
+		if (binding.hasErrors()) {
+			return "questionnaire/edit";
+
+		} else {
+			questionnaireService.saveQuestionnaire(questionnaire);
+			status.setComplete();
+
+			return "redirect:/questionnaire/" + questionnaire.getId();
+		}
+	}
+
+	@RequestMapping("/questionnaire/addTag/{tag}")
+	public String addTag(
+			@ModelAttribute("questionnaire") Questionnaire questionnaire,
+			@PathVariable("tag") String tagLabel) {
+
+		questionnaire.getTags().add(new Tag(tagLabel));
+		return "questionnaire/tags";
+	}
+
+	@RequestMapping("/questionnaire/deleteTag/{tag}")
+	public String deleteTag(
+			@ModelAttribute("questionnaire") Questionnaire questionnaire,
+			@PathVariable("tag") String tagLabel) {
+
+		questionnaire.getTags().remove(new Tag(tagLabel));
+		return "questionnaire/tags";
 	}
 }

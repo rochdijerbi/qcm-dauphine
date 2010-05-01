@@ -1,5 +1,5 @@
-<%@include file="include/taglib.jsp" %>
 <jsp:include page="include/header.jsp" />
+	<%@ include file="include/taglib.jsp" %>
 	<ul id="advice">
 		<li>
 			<h3>stats</h3>

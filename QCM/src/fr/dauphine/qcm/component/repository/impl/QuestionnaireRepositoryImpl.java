@@ -1,8 +1,11 @@
 package fr.dauphine.qcm.component.repository.impl;
 
+import org.apache.commons.collections.Closure;
+import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
+import fr.dauphine.qcm.closure.SaveOrUpdateClosure;
 import fr.dauphine.qcm.component.repository.IQuestionnaireRepository;
 import fr.dauphine.qcm.model.Questionnaire;
 
@@ -21,5 +24,13 @@ public final class QuestionnaireRepositoryImpl extends
 		query.setLong("userId", userId);
 
 		return (Questionnaire) query.uniqueResult();
+	}
+
+	@Override
+	public Questionnaire save(Questionnaire questionnaire) {
+		Closure closure = new SaveOrUpdateClosure(getCurrentSession());
+		CollectionUtils.forAllDo(questionnaire.getTags(), closure);
+
+		return super.save(questionnaire);
 	}
 }

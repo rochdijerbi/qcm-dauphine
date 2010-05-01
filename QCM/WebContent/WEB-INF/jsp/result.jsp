@@ -1,5 +1,5 @@
-<%@include file="include/taglib.jsp" %>
 <jsp:include page="include/header.jsp" />
+	<%@ include file="include/taglib.jsp" %>
 	<div id="content">
 		<c:choose>
 			<c:when test="${empty result}">

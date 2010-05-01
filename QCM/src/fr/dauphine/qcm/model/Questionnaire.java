@@ -5,15 +5,22 @@ import static java.util.Collections.shuffle;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotBlank;
-
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class Questionnaire extends AbstractEntity {
@@ -23,11 +30,15 @@ public class Questionnaire extends AbstractEntity {
 	@NotBlank
 	private String title;
 
+	@DateTimeFormat(iso = ISO.DATE, pattern = "dd/MM/YYYY")
 	private Date start;
 
+	@DateTimeFormat(iso = ISO.DATE, pattern = "dd/MM/YYYY")
 	private Date end;
 
-	@OneToMany(mappedBy = "questionnaire")
+	@Valid
+	@Size(min = 1)
+	@OneToMany(mappedBy = "questionnaire", cascade = CascadeType.ALL)
 	private List<Question> questions = new ArrayList<Question>();
 
 	@OneToMany(mappedBy = "questionnaire")
@@ -36,8 +47,8 @@ public class Questionnaire extends AbstractEntity {
 	@Formula(value = "(SELECT COUNT(*) FROM Result r WHERE r.questionnaire_id = id)")
 	private int resultsSize;
 
-	@ManyToMany
-	private List<Tag> tags = new ArrayList<Tag>();
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<Tag> tags = new TreeSet<Tag>();
 
 	public void setTitle(String title) {
 		this.title = title;
@@ -76,11 +87,11 @@ public class Questionnaire extends AbstractEntity {
 		shuffle(getQuestions());
 	}
 
-	public void setTags(List<Tag> tags) {
+	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
 	}
 
-	public List<Tag> getTags() {
+	public Set<Tag> getTags() {
 		return tags;
 	}
 
@@ -117,5 +128,11 @@ public class Questionnaire extends AbstractEntity {
 	@Override
 	public String toString() {
 		return getTitle();
+	}
+
+	public static Questionnaire createEmpty() {
+		Questionnaire questionnaire = new Questionnaire();
+		questionnaire.addQuestion(Question.createEmpty());
+		return questionnaire;
 	}
 }
