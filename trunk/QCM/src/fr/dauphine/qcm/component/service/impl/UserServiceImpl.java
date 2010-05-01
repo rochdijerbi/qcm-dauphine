@@ -23,6 +23,7 @@ public class UserServiceImpl implements IUserService {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	@Transactional(readOnly = true)
 	public User checkCredentials(User user) throws FunctionalException {
 		User databaseUser = userRepository.loadByLogin(user.getLogin());
@@ -39,6 +40,7 @@ public class UserServiceImpl implements IUserService {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	@Transactional
 	public User createAccount(User user) throws FunctionalException {
 		User databaseUser = userRepository.loadByLogin(user.getLogin());
@@ -54,6 +56,7 @@ public class UserServiceImpl implements IUserService {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	@Transactional(readOnly = true)
 	public User getById(Long id) {
 		User user = userRepository.load(id);
