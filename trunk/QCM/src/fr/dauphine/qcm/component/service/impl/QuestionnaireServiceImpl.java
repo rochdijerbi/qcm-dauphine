@@ -20,7 +20,6 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 	@Autowired
 	IQuestionnaireRepository questionnaireRepository;
 
-	@Override
 	@Transactional(readOnly = true)
 	public Result getResultByUserAndQuestionnaireId(User user,
 			Long questionnaireId) {
@@ -34,7 +33,6 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 		return result;
 	}
 
-	@Override
 	@Transactional(readOnly = true)
 	public Questionnaire getQuestionnaireById(Long questionnaireId, User user) {
 		Questionnaire questionnaire = questionnaireRepository.loadForUser(
@@ -47,7 +45,6 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 		return questionnaire;
 	}
 
-	@Override
 	@Transactional
 	public void saveAnswers(Result result) {
 		resultRepository.save(result);

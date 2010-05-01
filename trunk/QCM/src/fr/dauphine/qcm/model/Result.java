@@ -79,7 +79,6 @@ public class Result extends AbstractEntity implements Comparable<Result> {
 				new BeanPropertyValueEqualsPredicate("correct", true));
 	}
 
-	@Override
 	public int compareTo(Result o) {
 		return getCorrectAnswers().size() - o.getCorrectAnswers().size();
 	}
