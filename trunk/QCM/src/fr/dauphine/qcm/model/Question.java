@@ -6,18 +6,22 @@ import static org.apache.commons.collections.CollectionUtils.find;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
 
 import org.apache.commons.beanutils.BeanPropertyValueEqualsPredicate;
 import org.hibernate.validator.constraints.NotBlank;
-
 
 @Entity
 public class Question extends AbstractEntity {
 
 	private static final long serialVersionUID = -2496095094253773982L;
+
+	private static final int NUMBER_OF_ANSWERS = 4;
 
 	@NotBlank
 	private String label;
@@ -25,7 +29,9 @@ public class Question extends AbstractEntity {
 	@ManyToOne(optional = false)
 	private Questionnaire questionnaire;
 
-	@OneToMany(mappedBy = "question")
+	@Valid
+	@Size(min = NUMBER_OF_ANSWERS, max = NUMBER_OF_ANSWERS)
+	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
 	private List<Answer> answers = new ArrayList<Answer>();
 
 	public void setLabel(String label) {
@@ -65,9 +71,24 @@ public class Question extends AbstractEntity {
 		return (Answer) find(getAnswers(),
 				new BeanPropertyValueEqualsPredicate("correct", true));
 	}
-	
+
 	@Override
 	public String toString() {
 		return getLabel();
+	}
+
+	public static Question createEmpty() {
+		Question question = new Question();
+
+		for (int i = 0; i < NUMBER_OF_ANSWERS; i++) {
+			Answer answer = new Answer();
+			if (i == 0) {
+				answer.setCorrect(true);
+			}
+
+			question.addAnswer(answer);
+		}
+
+		return question;
 	}
 }

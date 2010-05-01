@@ -11,7 +11,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.dauphine.qcm.component.repository.IAbstractRepository;
-import fr.dauphine.qcm.model.AbstractEntity;
+import fr.dauphine.qcm.model.Identifiable;
 
 /**
  * Dep™t generique (Implementation Hibernate).
@@ -20,8 +20,8 @@ import fr.dauphine.qcm.model.AbstractEntity;
  *            Classe entite
  */
 @SuppressWarnings("unchecked")
-public abstract class AbstractRepositoryImpl<T extends AbstractEntity>
-		implements IAbstractRepository<T> {
+public abstract class AbstractRepositoryImpl<T extends Identifiable> implements
+		IAbstractRepository<T> {
 
 	/**
 	 * Nombre de resultats par page.
@@ -61,9 +61,9 @@ public abstract class AbstractRepositoryImpl<T extends AbstractEntity>
 	 * {@inheritDoc}
 	 */
 	public T save(T entity) {
-		Long id = (Long) getCurrentSession().save(entity);
+		Serializable id = getCurrentSession().save(entity);
 		entity.setId(id);
-		
+
 		return entity;
 	}
 

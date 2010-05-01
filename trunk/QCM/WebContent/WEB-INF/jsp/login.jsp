@@ -1,5 +1,5 @@
-<%@include file="include/taglib.jsp" %>
 <jsp:include page="include/header.jsp" />
+	<%@ include file="include/taglib.jsp" %>
 	<div id="content">
 		<h2><c:out value="Login" /></h2>
 		<form:form modelAttribute="user">

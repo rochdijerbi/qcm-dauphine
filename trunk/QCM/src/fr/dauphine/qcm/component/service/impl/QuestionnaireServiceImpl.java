@@ -35,10 +35,21 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 	}
 
 	@Override
+	@Transactional
+	public void saveAnswers(Result result) {
+		resultRepository.save(result);
+	}
+
+	@Override
+	@Transactional
+	public void saveQuestionnaire(Questionnaire questionnaire) {
+		questionnaireRepository.save(questionnaire);
+	}
+
+	@Override
 	@Transactional(readOnly = true)
-	public Questionnaire getQuestionnaireById(Long questionnaireId, User user) {
-		Questionnaire questionnaire = questionnaireRepository.loadForUser(
-				questionnaireId, user.getId());
+	public Questionnaire getQuestionnaireById(Long id) {
+		Questionnaire questionnaire = questionnaireRepository.load(id);
 
 		if (questionnaire != null) {
 			questionnaire.shuffleQuestions();
@@ -48,8 +59,15 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 	}
 
 	@Override
-	@Transactional
-	public void saveAnswers(Result result) {
-		resultRepository.save(result);
+	@Transactional(readOnly = true)
+	public Questionnaire getQuestionnaireByIdAndUser(Long id, User user) {
+		Questionnaire questionnaire = questionnaireRepository.loadForUser(id,
+				user.getId());
+
+		if (questionnaire != null) {
+			questionnaire.shuffleQuestions();
+		}
+
+		return questionnaire;
 	}
 }

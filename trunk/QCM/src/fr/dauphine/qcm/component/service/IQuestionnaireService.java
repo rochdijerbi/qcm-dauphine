@@ -8,7 +8,11 @@ public interface IQuestionnaireService {
 
 	Result getResultByUserAndQuestionnaireId(User user, Long questionnaireId);
 
-	Questionnaire getQuestionnaireById(Long id, User user);
+	Questionnaire getQuestionnaireByIdAndUser(Long id, User user);
+
+	Questionnaire getQuestionnaireById(Long id);
 
 	void saveAnswers(Result result);
+
+	void saveQuestionnaire(Questionnaire questionnaire);
 }
