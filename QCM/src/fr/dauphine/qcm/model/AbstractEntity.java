@@ -20,7 +20,9 @@ public abstract class AbstractEntity implements Serializable,
 	private Long id = null;
 
 	@Version
-	private Date version;
+	private Date datemodif;
+
+	private Date datecreate = new Date();
 
 	public void setId(Long id) {
 		this.id = id;
@@ -30,12 +32,12 @@ public abstract class AbstractEntity implements Serializable,
 		return id;
 	}
 
-	public void setVersion(Date version) {
-		this.version = version;
+	public void setDatemodif(Date datemodif) {
+		this.datemodif = datemodif;
 	}
 
-	public Date getVersion() {
-		return version;
+	public Date getDatemodif() {
+		return datemodif;
 	}
 
 	@Override
@@ -56,5 +58,9 @@ public abstract class AbstractEntity implements Serializable,
 		}
 
 		return getId().hashCode();
+	}
+
+	public Date getDatecreate() {
+		return datecreate;
 	}
 }
