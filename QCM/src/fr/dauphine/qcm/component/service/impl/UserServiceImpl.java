@@ -3,6 +3,7 @@ package fr.dauphine.qcm.component.service.impl;
 import static org.apache.commons.codec.digest.DigestUtils.shaHex;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,7 @@ public class UserServiceImpl implements IUserService {
 	@Transactional
 	public User createAccount(User user) throws FunctionalException {
 		User databaseUser = userRepository.loadByLogin(user.getLogin());
-		
+
 		if (databaseUser != null) {
 			throw new FunctionalException("login already registered");
 		}
@@ -60,16 +61,22 @@ public class UserServiceImpl implements IUserService {
 	@Transactional(readOnly = true)
 	public User getById(Long id) {
 		User user = userRepository.load(id);
-		
+
 		if (user != null) {
 			for (Result result : user.getResults()) {
 				result.getQuestionnaire().getQuestions().size(); // Lazy
 			}
-	
+
 			// Les meilleurs scores en premier
 			Collections.sort(user.getResults());
 		}
-		
+
 		return user;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<User> getall() {
+		return userRepository.loadAll();
 	}
 }
