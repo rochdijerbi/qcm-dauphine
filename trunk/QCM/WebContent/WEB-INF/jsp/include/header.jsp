@@ -51,11 +51,7 @@
 						<li>
 							<a href="<spring:url value="/logout" />">
 								<img src="<spring:url value="/static/img/key.png" />" alt="" />
-<<<<<<< .mine
-								DÃ©connexion
-=======
 								Déconnexion
->>>>>>> .r23
 							</a>
 						</li>
 						<li class="separator"></li>
