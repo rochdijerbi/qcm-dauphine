@@ -1,5 +1,10 @@
 $(document).ready(function () {
 	
+	$("table").tablesorter({ 
+        // sort on the first column and third column, order asc 
+        sortList: [[0,0]] 
+    }); 
+	
 	$('#addTag').click(function (e) {
 		e.preventDefault();
 		
