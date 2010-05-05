@@ -7,6 +7,7 @@
 		</li>
 	</ul>
 	<div id="content">
+	<div id="avatar"> <img src="<spring:url value="/static/img/default_profile.jpg" />" /></div>
 		<h2><c:out value="${user}" /></h2>
 		<c:if test="${not empty user.results}">
 			<table>
