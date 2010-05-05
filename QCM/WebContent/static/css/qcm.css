@@ -99,6 +99,11 @@ h1 {
 	padding-top:10px;
 }
 
+#avatar{
+	    withd: 50px;
+        height: 100px;	
+}
+
 /* tables */
 table.tablesorter {
 	font-family:arial;
