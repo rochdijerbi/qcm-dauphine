@@ -17,8 +17,6 @@ $(document).ready(function () {
 		}
 	});
 		
-    var data = [[0, 3], [4, 8], [8, 5], [9, 13]];
-
 	$.plot($("#chartdiv"), data);
 
 	bindDeleteAnchors();
