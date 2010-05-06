@@ -1,7 +1,7 @@
 <jsp:include page="include/header.jsp" />
 <%@ include file="include/taglib.jsp"%>
 <script>
-	
+	var data = [ [ 0, 3 ], [ 4, 8 ], [ 8, 5 ], [ 9, 13 ] ];
 </script>
 <ul id="advice">
 	<li>
@@ -30,6 +30,5 @@
 			</tr>
 		</c:forEach>
 	</table>
-</c:if>
-</div>
+</c:if></div>
 <jsp:include page="include/footer.jsp" />
