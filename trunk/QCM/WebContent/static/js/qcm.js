@@ -1,7 +1,6 @@
 $(document).ready(function () {
 	
 	$("table").tablesorter({ 
-        // sort on the first column and third column, order asc 
         sortList: [[0,0]] 
     }); 
 	
@@ -17,7 +16,11 @@ $(document).ready(function () {
 			});
 		}
 	});
-	
+		
+    var data = [[0, 3], [4, 8], [8, 5], [9, 13]];
+
+	$.plot($("#chartdiv"), data);
+
 	bindDeleteAnchors();
 	
 	$('#tagsCloud').tagcloud();
