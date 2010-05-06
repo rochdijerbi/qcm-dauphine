@@ -15,6 +15,7 @@
 		<script type="text/javascript" src="<spring:url value="/static/js/jquery.tagcloud.js" />"></script>
 		<script type="text/javascript" src="<spring:url value="/static/js/qcm.js" />"></script>
 		<script type="text/javascript" src="<spring:url value="/static/js/jquery.tablesorter.min.js" />"></script>
+		<script type="text/javascript" src="<spring:url value="/static/js/jquery.flot.min.js" />"></script>
 	</head>
 
 	<body>
