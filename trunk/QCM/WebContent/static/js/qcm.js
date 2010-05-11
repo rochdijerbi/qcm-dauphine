@@ -7,13 +7,23 @@ $(document).ready(function () {
 	$('#addTag').click(function (e) {
 		e.preventDefault();
 		
-		var tag = jQuery.trim($('#newTag').val());
+		$('#tags').load('/QCM/questionnaire/addTag/' + $('#newTag').val(), null, function () {
+			$('#newTag').val('');
+			$('#addTag').css('display', 'none');
+			bindDeleteAnchors();
+		});
+	});
+	
+	$('#newTag').each(function () {
+		$('#addTag').css('display', 'none');
+		
+	}).keyup(function (e) {
+		var tag = jQuery.trim($(this).val());
 		
 		if (tag != '') {
-			$('#tags').load('/QCM/questionnaire/addTag/' + tag, null, function () {
-				$('#newTag').val('');
-				bindDeleteAnchors();
-			});
+			$('#addTag').css('display', 'inline');
+		} else {
+			$('#addTag').css('display', 'none');
 		}
 	});
 		
