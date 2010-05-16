@@ -4,8 +4,6 @@ $(document).ready(function () {
         sortList: [[0,0]] 
     });*/
 	
-	/*test synchro tiago*/
-	
 	$('#addTag').click(function (e) {
 		e.preventDefault();
 		
