@@ -1,8 +1,10 @@
 $(document).ready(function () {
 	
-	$("table").tablesorter({ 
+	/*$("table").tablesorter({ 
         sortList: [[0,0]] 
-    }); 
+    });*/
+	
+	/*test synchro tiago*/
 	
 	$('#addTag').click(function (e) {
 		e.preventDefault();
@@ -27,7 +29,7 @@ $(document).ready(function () {
 		}
 	});
 		
-	$.plot($("#chartdiv"), data);
+	/*$.plot($("#chartdiv"), data);*/
 
 	bindDeleteAnchors();
 	
