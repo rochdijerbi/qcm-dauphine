@@ -16,7 +16,17 @@ h1 {
 	color:white;
 }
 
-#content input[type=text], #content input[type=password] {
+#advice input[type=text] {
+	display:block;
+	padding:5px;
+	border:1px solid gray;
+	-moz-border-radius:5px;
+	font-size:12pt;
+	display:block;
+	clear:both;
+}
+
+#content input[type=text], #content input[type=password], #content textarea {
 	display:block;
 	padding:5px;
 	border:1px solid gray;
@@ -25,12 +35,46 @@ h1 {
 	width:50%;
 }
 
+.deleteTag {
+	background:#bce85d;
+	border:1px solid #a9d24f;
+	color:black;
+	-moz-border-radius:5px;
+	padding:2px 2px 2px 5px;
+	cursor:pointer;
+	white-space:nowrap;
+	display:block;
+	float:left;
+	margin-right:5px;
+	margin-bottom:5px;
+}
+
+.deleteTag a {
+	text-decoration:none;
+	color:black;
+	padding:0px 3px;
+	-moz-border-radius:5px;
+	background:#a9d24f;
+}
+
+.deleteTag:hover {
+	background:#a9d24f;
+}
+
+.deleteTag:hover a {
+	background:#87aa3b;
+}
+
+#content textarea {
+	height:100px;
+}
+
 .inputError {
 	border:1px solid #8b4d59;
 	background:#fae1e6;
 }
 
-#content input[type=submit], #content input[type=button] {
+#content input[type=submit], #content input[type=button], a#addTag {
 	padding:5px 20px;
 	background:#a24571;
 	color:white;
@@ -41,6 +85,12 @@ h1 {
 	font-size:12pt;
 	cursor:pointer;
 	margin-right:10px;
+	text-decoration:none;
+}
+
+a#addTag {
+	display:block;
+	margin-left:120px;
 }
 
 #content input[type=submit]:hover, #content input[type=button]:hover {
