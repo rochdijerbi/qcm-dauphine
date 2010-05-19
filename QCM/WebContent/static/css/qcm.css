@@ -229,8 +229,8 @@ input[type=checkbox].correct {
 .list-box{
 font-size:150%;
 border-bottom:3px dotted #999999;
-float:left;
 padding:11px;
+padding-bottom:20px;
 width:730px;
 }
 
