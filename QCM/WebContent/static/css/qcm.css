@@ -1,11 +1,11 @@
 * {
 	padding:0;
 	margin:0;
+	font-family:'Trebuchet MS';
 }
 
 body {
 	background:#d5d5d5 url('../img/background.png') repeat-x;
-	font-family:'Trebuchet MS';
 	font-size:12pt;
 }
 
@@ -16,6 +16,72 @@ h1 {
 	color:white;
 }
 
+#content input[type=text], #content input[type=password] {
+	display:block;
+	padding:5px;
+	border:1px solid gray;
+	-moz-border-radius:5px;
+	font-size:12pt;
+	width:50%;
+}
+
+.inputError {
+	border:1px solid #8b4d59;
+	background:#fae1e6;
+}
+
+#content input[type=submit], #content input[type=button] {
+	padding:5px 20px;
+	background:#a24571;
+	color:white;
+	text-align:center;
+	font-weight:bold;	
+	-moz-border-radius:5px;
+	border:none;	
+	font-size:12pt;
+	cursor:pointer;
+	margin-right:10px;
+}
+
+#content input[type=submit]:hover, #content input[type=button]:hover {
+	background:#c34e80;	
+}
+
+.questions {
+	background:#f0f5fb;
+	border:5px solid #f0f5fb;
+	padding:10px;
+	-moz-border-radius:10px;
+	margin-top:10px;
+	margin-bottom:10px;
+	list-style:none;
+}
+
+.questions h3, .questions h4 {
+	color:#506a87;
+	margin:5px 0;
+}
+
+.questions:hover {
+	border:5px dashed #d4dfeb;
+}
+
+.answers {
+	background:#d4dfeb;
+	padding:10px;
+	-moz-border-radius:10px;
+	margin-top:10px;	
+}
+
+.answers ul {
+	list-style:none;
+}
+
+input[type=checkbox].correct {
+	float:left;
+	margin:10px 10px 0 10px;
+}
+
 #menu a img {
 	border:none;
 	margin-bottom:-2px;
@@ -24,6 +90,7 @@ h1 {
 #menu a {
 	color:white;
 	text-decoration:none;
+	text-align:center;
 }
 
 #menu li a {

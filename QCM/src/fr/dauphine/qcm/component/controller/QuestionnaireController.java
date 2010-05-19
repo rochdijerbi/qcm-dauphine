@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import fr.dauphine.qcm.component.service.IQuestionnaireService;
+import fr.dauphine.qcm.model.Question;
 import fr.dauphine.qcm.model.Questionnaire;
 import fr.dauphine.qcm.model.Result;
 import fr.dauphine.qcm.model.Tag;
@@ -128,5 +129,14 @@ public class QuestionnaireController {
 
 		questionnaire.getTags().remove(new Tag(tagLabel));
 		return "questionnaire/tags";
+	}
+	
+
+	@RequestMapping("/questionnaire/addQuestion")
+	public String addQuestion(
+			@ModelAttribute("questionnaire") Questionnaire questionnaire) {
+
+		questionnaire.getQuestions().add(Question.createEmpty());
+		return "questionnaire/edit";
 	}
 }
