@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import fr.dauphine.qcm.closure.RefreshClosure;
 import fr.dauphine.qcm.component.repository.IResultRepository;
+import fr.dauphine.qcm.model.Answer;
 import fr.dauphine.qcm.model.Result;
 
 @Repository
@@ -21,15 +22,20 @@ public final class ResultRepositoryImpl extends AbstractRepositoryImpl<Result>
 		criteria.add(Restrictions.eq("user.id", userId));
 		criteria.add(Restrictions.eq("questionnaire.id", questionnaireId));
 
-		return (Result) criteria.uniqueResult();
+		Result result = (Result) criteria.uniqueResult();
+		
+		result.getAnswers().size();
+		result.getQuestionnaire().getQuestions().size();
+		result.getQuestionnaire().getTags().size();
+		
+		return result;
 	}
 
 	@Override
 	public Result save(Result result) {
 		Closure refreshClosure = new RefreshClosure(getCurrentSession());
-
+		
 		refreshClosure.execute(result.getUser());
-		refreshClosure.execute(result.getQuestionnaire());
 		CollectionUtils.forAllDo(result.getAnswers(), refreshClosure);
 
 		return super.save(result);

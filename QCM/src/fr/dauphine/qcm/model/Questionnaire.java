@@ -50,7 +50,7 @@ public class Questionnaire extends AbstractEntity {
 	@Formula(value = "(SELECT COUNT(*) FROM Result r WHERE r.questionnaire_id = id)")
 	private int resultsSize;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	private Set<Tag> tags = new TreeSet<Tag>();
 
 	public void setTitle(String title) {

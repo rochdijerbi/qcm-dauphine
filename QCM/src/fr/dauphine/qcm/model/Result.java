@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.AssertTrue;
@@ -27,7 +26,7 @@ public class Result extends AbstractEntity implements Comparable<Result> {
 	@ManyToOne(optional = false)
 	private User user;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	private List<Answer> answers = new ArrayList<Answer>();
 
 	public void setQuestionnaire(Questionnaire questionnaire) {

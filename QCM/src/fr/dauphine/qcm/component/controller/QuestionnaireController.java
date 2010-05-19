@@ -136,7 +136,7 @@ public class QuestionnaireController {
 	public String addQuestion(
 			@ModelAttribute("questionnaire") Questionnaire questionnaire) {
 
-		questionnaire.getQuestions().add(Question.createEmpty());
+		questionnaire.addQuestion(Question.createEmpty());
 		return "questionnaire/edit";
 	}
 }

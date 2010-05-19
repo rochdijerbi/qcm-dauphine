@@ -65,8 +65,9 @@ public class UserServiceImpl implements IUserService {
 		if (user != null) {
 			for (Result result : user.getResults()) {
 				result.getQuestionnaire().getQuestions().size(); // Lazy
+				result.getAnswers().size(); // Lazy
 			}
-
+			
 			// Les meilleurs scores en premier
 			Collections.sort(user.getResults());
 		}

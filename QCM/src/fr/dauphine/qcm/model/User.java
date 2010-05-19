@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
@@ -31,7 +32,7 @@ public class User extends AbstractEntity {
 	@Column(length = IMG_MAX_SIZE)
 	private byte[] photo;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Result> results = new ArrayList<Result>();
 
 	@Formula(value = "(SELECT COUNT(*) FROM Result r WHERE r.user_id = id)")
