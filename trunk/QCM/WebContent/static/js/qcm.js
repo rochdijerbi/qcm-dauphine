@@ -1,9 +1,34 @@
 $(document).ready(function () {
 	
-	/*$("table").tablesorter({ 
-        sortList: [[0,0]] 
-    });*/
+	// Tableaux triables
+	//$("table").tablesorter({sortList: [[0,0]]});
 	
+	// Graphiques utilisateur
+	//$.plot($("#chartdiv"), data);
+
+	// Creation de questionnaire
+	bindAddQuestion();
+	bindAddAnchor();
+	
+	// Nuage de tags
+	$('#tagsCloud').tagcloud();
+});
+
+/********************************************************************************************
+ * Ajout d'une nouvelle question
+ */
+
+function bindAddQuestion() {
+	$('#addQuestion').click(function (e) {
+		location.href = '/QCM/questionnaire/addQuestion';
+	});
+}
+
+/********************************************************************************************
+ * Tags
+ */
+
+function bindAddAnchor() {
 	$('#addTag').click(function (e) {
 		e.preventDefault();
 		
@@ -26,13 +51,9 @@ $(document).ready(function () {
 			$('#addTag').css('display', 'none');
 		}
 	});
-		
-	/*$.plot($("#chartdiv"), data);*/
-
-	bindDeleteAnchors();
 	
-	$('#tagsCloud').tagcloud();
-});
+	bindDeleteAnchors();
+}
 
 function bindDeleteAnchors() {
 
@@ -44,3 +65,6 @@ function bindDeleteAnchors() {
 		});
 	});
 }
+
+/********************************************************************************************/
+

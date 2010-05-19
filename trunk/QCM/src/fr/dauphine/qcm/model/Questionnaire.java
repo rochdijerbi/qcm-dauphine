@@ -29,6 +29,9 @@ public class Questionnaire extends AbstractEntity {
 
 	@NotBlank
 	private String title;
+	
+	@NotBlank
+	private String description;
 
 	@DateTimeFormat(iso = ISO.DATE, pattern = "dd/MM/YYYY")
 	private Date start;
@@ -58,6 +61,14 @@ public class Questionnaire extends AbstractEntity {
 		return title;
 	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+	
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
