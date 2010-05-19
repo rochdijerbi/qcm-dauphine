@@ -12,7 +12,10 @@
 		<div class="list-box"><a
 			href="<spring:url value="/user/${user.id}" />"> <c:out
 			value="${user}" /> </a>
-		<div class="list-stat unanswered">
+		<c:choose>
+		<c:when test="${user.resultsSize == 0}"><div class="list-stat unanswered"></c:when>
+		<c:otherwise><div class="list-stat answered"></c:otherwise>
+		</c:choose>
 		<div class="list-count"><c:out value="${user.resultsSize}" /></div>
 		<div>QCM</div>
 		</div>

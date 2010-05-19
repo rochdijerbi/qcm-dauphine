@@ -10,10 +10,11 @@
 	questionnaire(s)</li>
 	<div id="chartdiv" style="width: 200px; height: 200px;"></div>
 </ul>
+<c:set var="connectedUser" value="${sessionScope.user}" />
 <div id="content">
 <div id="avatar"><img
 	src="<spring:url value="/static/img/default_profile.jpg" />" /></div>
-<c:if test="${user.id == 1}">
+<c:if test="${user.id == connectedUser.id or connectedUser.admin}">
 	<form:form modelAttribute="user">
 		<form:checkbox path="admin" value="${user.admin}" />
 		<form:label path="admin">Administrateur</form:label>
