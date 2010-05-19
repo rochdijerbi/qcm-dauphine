@@ -13,22 +13,29 @@
 <div id="content">
 <div id="avatar"><img
 	src="<spring:url value="/static/img/default_profile.jpg" />" /></div>
+<c:if test="${user.id == 1}">
+	<form:form modelAttribute="user">
+		<form:checkbox path="admin" value="${user.admin}" />
+		<form:label path="admin">Administrateur</form:label>
+		<form:errors path="admin" />
+		<br />
+
+		<input type="submit" value="Envoyer" />
+	</form:form>
+</c:if>
 <h2><c:out value="${user}" /></h2>
 <c:if test="${not empty user.results}">
-	<table>
-		<tr>
-			<td>Titre</td>
-			<td>Score</td>
-		</tr>
 		<c:forEach items="${user.results}" var="result">
-			<tr>
-				<td><a
-					href="<spring:url value="/result/${result.questionnaire.id}" />">
-				<c:out value="${result.questionnaire}" /> </a></td>
-				<td><c:out value="${fn:length(result.correctAnswers)}" /> sur
-				<c:out value="${fn:length(result.questionnaire.questions)}" /></td>
-			</tr>
+			<div class="list-box"><a
+				href="<spring:url value="/result/${result.questionnaire.id}" />">
+			<c:out value="${result.questionnaire}" /> </a>
+			<div class="list-stat">
+			<div class="list-count"><c:out
+				value="${fn:length(result.correctAnswers)}" />/<c:out
+				value="${fn:length(result.questionnaire.questions)}" /></div>
+			<div>score</div>
+			</div>
+			</div>
 		</c:forEach>
-	</table>
 </c:if></div>
 <jsp:include page="include/footer.jsp" />
