@@ -1,10 +1,4 @@
 $(document).ready(function () {
-	
-	// Tableaux triables
-	//$("table").tablesorter({sortList: [[0,0]]});
-	
-	// Graphiques utilisateur
-	//$.plot($("#chartdiv"), data);
 
 	// Creation de questionnaire
 	bindAddQuestion();
