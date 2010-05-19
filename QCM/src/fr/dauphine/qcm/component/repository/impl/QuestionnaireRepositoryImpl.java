@@ -1,5 +1,7 @@
 package fr.dauphine.qcm.component.repository.impl;
 
+import java.util.List;
+
 import org.apache.commons.collections.Closure;
 import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.Query;
@@ -32,5 +34,15 @@ public final class QuestionnaireRepositoryImpl extends
 		CollectionUtils.forAllDo(questionnaire.getTags(), closure);
 
 		return super.save(questionnaire);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Questionnaire> paginateListQuestionnaire(Integer page) {
+		Query query = getCurrentSession().createQuery("FROM Questionnaire q ORDER BY q.datecreate");
+
+		paginate(query, page);
+
+		return query.list();
 	}
 }

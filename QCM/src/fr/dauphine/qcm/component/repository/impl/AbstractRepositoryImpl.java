@@ -26,7 +26,7 @@ public abstract class AbstractRepositoryImpl<T extends Identifiable> implements
 	/**
 	 * Nombre de resultats par page.
 	 */
-	private static final int NB_RESULTS_BY_PAGE = 10;
+	private static final int NB_RESULTS_BY_PAGE = 1;
 
 	/**
 	 * Session factory Hibernate.
