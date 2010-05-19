@@ -139,4 +139,12 @@ public class QuestionnaireController {
 		questionnaire.addQuestion(Question.createEmpty());
 		return "questionnaire/edit";
 	}
+	
+	@RequestMapping("/questionnairelist/{page}")
+	public String addQuestion(@PathVariable("page") Integer page, HttpSession session, ModelMap model) {
+		model.put("listQuestionnaire", questionnaireService.getListQuestionnaire(page));
+
+		return "questionnairelist";
+
+	}
 }
