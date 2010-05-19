@@ -1,6 +1,6 @@
 <jsp:include page="../include/header.jsp" />
 	<%@include file="../include/taglib.jsp" %>
-	<form:form modelAttribute="questionnaire">
+	<form:form modelAttribute="questionnaire" action="/QCM/questionnaire/create">
 		<ul id="advice">
 			<li>
 				<h3>dates</h3>
@@ -15,7 +15,7 @@
 				<form:errors path="end" />
 				<br />
 			</li>
-			
+
 			<li>
 				<h3>tags</h3>
 				<div id="tags">
@@ -38,34 +38,38 @@
 					<h2>Modification d'un questionnaire</h2>
 				</c:otherwise>
 			</c:choose>
-				<form:label path="title">Titre</form:label>
-				<form:input path="title" />
-				<form:errors path="title" />
+				<form:label path="title">Titre du questionnaire</form:label>
+				<form:input path="title" cssErrorClass="inputError" />
 				
-				<ul class="questions">
+				<form:label path="title">Description</form:label>
+				<form:textarea path="description" cssErrorClass="inputError" />
+				
+				<ul>
 					<c:forEach items="${questionnaire.questions}" var="question" varStatus="statusQ">
-						<li>
-							<form:label path="questions[${statusQ.index}].label">Libellé</form:label>
-							<form:input path="questions[${statusQ.index}].label" />
-							<form:errors path="questions[${statusQ.index}].label" />
-							
-							<ul class="answers">
-								<c:forEach items="${question.answers}" varStatus="statusA">
-									<li>
-										<form:checkbox path="questions[${statusQ.index}].answers[${statusA.index}].correct" />
-										
-										<form:label path="questions[${statusQ.index}].answers[${statusA.index}].label">Libellé</form:label>
-										<form:input path="questions[${statusQ.index}].answers[${statusA.index}].label" />
-										<form:errors path="questions[${statusQ.index}].answers[${statusA.index}].label" />
-									</li>
-								</c:forEach>
-							</ul>
+						<li class="questions">
+								<h3>Question ${statusQ.index+1}</h3>
+								
+								<form:input path="questions[${statusQ.index}].label" cssErrorClass="inputError" />
+								
+								<div class="answers">
+									<ul>
+										<c:forEach items="${question.answers}" varStatus="statusA">
+											<li>
+												<h4>Réponse ${statusA.index+1}</h4>
+												
+												<form:checkbox cssClass="correct" path="questions[${statusQ.index}].answers[${statusA.index}].correct" />
+												
+												<form:input path="questions[${statusQ.index}].answers[${statusA.index}].label" cssErrorClass="inputError" />
+											</li>
+										</c:forEach>
+									</ul>
+								</div>
 						</li>
 					</c:forEach>
 				</ul>
 				
-				<input type="submit" value="Sauvegarder" />
-			
+			<input type="submit" value="Sauvegarder" />
+			<input type="button" value="Ajouter une question" id="addQuestion" />
 		</div>
 	</form:form>
 <jsp:include page="../include/footer.jsp" />
