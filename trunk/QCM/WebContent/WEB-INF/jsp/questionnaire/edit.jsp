@@ -23,9 +23,10 @@
 				</div>
 				
 				<input type="text" id="newTag" class="creation edition" />
+				<br />
 				
 				<a href="#" title="Add tag" id="addTag">
-					<img src="" alt="Add" />
+					Add
 				</a>
 			</li>
 		</ul>
