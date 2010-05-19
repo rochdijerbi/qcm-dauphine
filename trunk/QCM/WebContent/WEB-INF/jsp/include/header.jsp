@@ -19,7 +19,7 @@
 	</head>
 
 	<body>
-		<c:set var="connectedUser" value="${sessionScope.user}" />
+		<c:set var="connectedUser" value="${sessionScope.connected_user}" />
 		<div id="menu">
 			<h1><a href="<spring:url value="/" />">QCM</a></h1>
 			<ul id="navigation">
