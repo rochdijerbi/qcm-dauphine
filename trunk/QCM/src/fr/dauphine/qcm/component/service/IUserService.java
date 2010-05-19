@@ -14,4 +14,6 @@ public interface IUserService {
 	User getById(Long id);
 
 	List<User> getall();
+
+	User updateAccount(User user);
 }
