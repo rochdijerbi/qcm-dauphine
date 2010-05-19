@@ -2,6 +2,6 @@
 <c:forEach items="${questionnaire.tags}" var="tag">
 	<span class="deleteTag">
 		<c:out value="${tag}" />
-		<a href="#" rel="${tag}">X</a>
+		<a href="#" rel="${tag}">x</a>
 	</span>
 </c:forEach>
