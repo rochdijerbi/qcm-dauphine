@@ -67,7 +67,7 @@ public class UserServiceImpl implements IUserService {
 				result.getQuestionnaire().getQuestions().size(); // Lazy
 				result.getAnswers().size(); // Lazy
 			}
-			
+
 			// Les meilleurs scores en premier
 			Collections.sort(user.getResults());
 		}
@@ -82,6 +82,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
+	@Transactional
 	public User updateAccount(User user) {
 		userRepository.update(user);
 		return user;
