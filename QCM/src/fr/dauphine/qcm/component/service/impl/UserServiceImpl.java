@@ -80,4 +80,10 @@ public class UserServiceImpl implements IUserService {
 	public List<User> getall() {
 		return userRepository.loadAll();
 	}
+
+	@Override
+	public User updateAccount(User user) {
+		userRepository.update(user);
+		return user;
+	}
 }
