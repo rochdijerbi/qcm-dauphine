@@ -10,7 +10,7 @@
 		<h2>Tags</h2>
 		<ol id="tagsCloud">
 			<c:forEach items="${tags}" var="tag">
-				<li><c:out value="${tag}" /></li>
+				<li value="${tag.questionnairesSize}"><c:out value="${tag}" /></li>
 			</c:forEach>
 		</ol>
 	</div>
