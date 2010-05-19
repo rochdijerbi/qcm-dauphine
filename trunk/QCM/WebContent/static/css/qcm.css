@@ -16,6 +16,11 @@ h1 {
 	color:white;
 }
 
+#content input[type=radio] {
+	margin-right:10px;
+	margin-bottom:10px;
+}
+
 #advice input[type=text] {
 	display:block;
 	padding:5px;
