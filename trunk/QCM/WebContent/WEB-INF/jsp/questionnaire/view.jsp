@@ -4,7 +4,7 @@
 			<c:choose>
 			<c:when test="${empty result.questionnaire}">
 				<p>
-					You can't take this questionnaire right now.
+					Vous ne pouvez pas répondre à ce questionnaire.
 				</p>
 			</c:when>
 			<c:otherwise>
