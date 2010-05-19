@@ -20,7 +20,9 @@ $(document).ready(function () {
 
 function bindAddQuestion() {
 	$('#addQuestion').click(function (e) {
-		location.href = '/QCM/questionnaire/addQuestion';
+		var form = $('#questionnaire');
+		form.attr('action', '/QCM/questionnaire/addQuestion#addQuestion');
+		form.submit();
 	});
 }
 
