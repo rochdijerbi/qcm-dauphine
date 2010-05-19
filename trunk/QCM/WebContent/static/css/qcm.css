@@ -226,6 +226,49 @@ input[type=checkbox].correct {
         height: 100px;	
 }
 
+.list-box{
+font-size:150%;
+border-bottom:3px dotted #999999;
+float:left;
+padding:11px;
+width:730px;
+}
+
+.list-box a{
+	font-weight:bold;
+	text-decoration:none;
+	color:#000000;
+}
+
+.list-box:hover{
+	background:none repeat scroll 0 0 #C0C0C0;
+}
+
+.list-count{
+background:none repeat scroll 0 0 transparent;
+border:0 none;
+font-size:170%;
+margin:0;
+padding:0;
+vertical-align:baseline;
+}
+
+.list-stat{
+float:right;
+height:38px;
+margin:0 3px 0 0;
+padding:5px;
+width:48px;
+background:none repeat scroll 0 0 #9A4444;
+color:#FFFFFF;
+margin-top:-3px;
+padding:4px 0;
+text-align:center;
+font-size:50%;
+font-weight:bold;
+}
+
+
 /* tables */
 table.tablesorter {
 	font-family:arial;
