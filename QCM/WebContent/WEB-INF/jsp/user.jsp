@@ -10,16 +10,22 @@
 	questionnaire(s)</li>
 	<div id="chartdiv" style="width: 200px; height: 200px;"></div>
 </ul>
-<c:set var="connectedUser" value="${sessionScope.user}" />
+<c:set var="connectedUser" value="${sessionScope.connected_user}" />
 <div id="content">
 <div id="avatar"><img
 	src="<spring:url value="/static/img/default_profile.jpg" />" /></div>
 <c:if test="${user.id == connectedUser.id or connectedUser.admin}">
 	<form:form modelAttribute="user">
+		<form:label path="photo">Avatar</form:label>
+		<form:input type="file" path="photo" />
+		<form:errors path="photo" />
+		<br />
+	<c:if test="${connectedUser.admin}">
 		<form:checkbox path="admin" value="${user.admin}" />
 		<form:label path="admin">Administrateur</form:label>
 		<form:errors path="admin" />
 		<br />
+	</c:if>
 
 		<input type="submit" value="Envoyer" />
 	</form:form>
