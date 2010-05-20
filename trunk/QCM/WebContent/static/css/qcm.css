@@ -276,6 +276,18 @@ font-weight:bold;
 	background:none repeat scroll 0 0 #9A4444;
 }
 
+.user-editbox{
+    position:absolute;
+    top:59px;
+    left:420px;
+    padding: 10px;
+    border-left: 1px solid black;
+    height:80px;
+}
+
+.user-editbox input{
+	margin:4px;	
+}
 
 /* tables */
 table.tablesorter {
