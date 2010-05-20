@@ -36,7 +36,10 @@
 			<div class="list-box"><a
 				href="<spring:url value="/result/${result.questionnaire.id}" />">
 			<c:out value="${result.questionnaire}" /> </a>
-			<div class="list-stat">
+			<c:choose>
+			<c:when test="${fn:length(result.correctAnswers)==fn:length(result.questionnaire.questions)}"><div class="list-stat answered"></c:when>
+			<c:otherwise><div class="list-stat unanswered"></c:otherwise>
+			</c:choose>
 			<div class="list-count"><c:out
 				value="${fn:length(result.correctAnswers)}" />/<c:out
 				value="${fn:length(result.questionnaire.questions)}" /></div>
