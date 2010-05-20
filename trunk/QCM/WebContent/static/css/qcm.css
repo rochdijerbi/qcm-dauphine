@@ -238,6 +238,7 @@ width:730px;
 	font-weight:bold;
 	text-decoration:none;
 	color:#000000;
+	display:block;
 }
 
 .list-box:hover{
@@ -260,7 +261,7 @@ margin:0 3px 0 0;
 padding:5px;
 width:48px;
 color:#FFFFFF;
-margin-top:-3px;
+margin-top:-33px;
 padding:4px 0;
 text-align:center;
 font-size:50%;
