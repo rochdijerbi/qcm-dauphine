@@ -1,7 +1,5 @@
 package fr.dauphine.qcm.component.controller;
 
-import static fr.dauphine.qcm.util.UserUtil.setUser;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +32,7 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String handleEditForm(@ModelAttribute("user") User user,
 			HttpSession session) {
-		setUser(session, userService.updateAccount(user));
-		return "redirect:/userlist";
+		userService.updateAccount(user);
+		return "user";
 	}
 }
