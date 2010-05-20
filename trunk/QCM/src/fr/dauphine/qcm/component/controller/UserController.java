@@ -1,5 +1,8 @@
 package fr.dauphine.qcm.component.controller;
 
+import java.io.IOException;
+import java.io.OutputStream;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +37,17 @@ public class UserController {
 			HttpSession session) {
 		userService.updateAccount(user);
 		return "user";
+	}
+
+	@RequestMapping("/user/photo")
+	public void displayphoto(@ModelAttribute("user") User user,
+			OutputStream output, HttpSession session) {
+		try {
+			output.write(user.getPhoto());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }
