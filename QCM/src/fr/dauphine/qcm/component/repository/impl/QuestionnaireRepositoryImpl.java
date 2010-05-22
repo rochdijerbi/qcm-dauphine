@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.commons.collections.Closure;
 import org.apache.commons.collections.CollectionUtils;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Repository;
 
 import fr.dauphine.qcm.closure.SaveOrUpdateClosure;
@@ -39,10 +41,28 @@ public final class QuestionnaireRepositoryImpl extends
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Questionnaire> paginateListQuestionnaire(Integer page) {
-		Query query = getCurrentSession().createQuery("FROM Questionnaire q ORDER BY q.datecreate");
+		Criteria criteria = getCurrentSession().createCriteria(Questionnaire.class);
+		criteria.addOrder(Order.desc("datecreate"));
 
-		paginate(query, page);
+		paginate(criteria, page);
 
-		return query.list();
+		return criteria.list();
+	}
+	
+	@Override
+	public Long getNbQuestionnaires() {
+		Query query = getCurrentSession().createQuery("SELECT COUNT(*) FROM Questionnaire q");
+		
+		return (Long) query.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Questionnaire> getLastQuestionnaires() {
+		Criteria criteria = getCurrentSession().createCriteria(Questionnaire.class);
+		criteria.addOrder(Order.desc("datecreate"));
+		criteria.setMaxResults(NB_RESULTS_LAST_QCM);
+
+		return criteria.list();
 	}
 }

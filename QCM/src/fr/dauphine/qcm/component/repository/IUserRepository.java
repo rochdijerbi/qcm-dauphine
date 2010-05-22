@@ -5,5 +5,7 @@ import fr.dauphine.qcm.model.User;
 public interface IUserRepository extends IAbstractRepository<User> {
 
 	User loadByLogin(String login);
+	
+	Long getNbUsers();
 
 }

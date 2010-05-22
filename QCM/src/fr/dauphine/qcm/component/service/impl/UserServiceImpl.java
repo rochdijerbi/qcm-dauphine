@@ -87,4 +87,10 @@ public class UserServiceImpl implements IUserService {
 		userRepository.update(user);
 		return user;
 	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Long getNbUsers() {
+		return userRepository.getNbUsers();
+	}
 }

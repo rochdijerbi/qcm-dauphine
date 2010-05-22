@@ -6,4 +6,6 @@ public interface IResultRepository extends IAbstractRepository<Result> {
 
 	Result loadByUserIdAndQuestionnaireId(Long userId, Long questionnaireId);
 
+	Long getNbResults();
+
 }

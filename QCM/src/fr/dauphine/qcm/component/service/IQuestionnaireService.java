@@ -19,4 +19,10 @@ public interface IQuestionnaireService {
 	void saveQuestionnaire(Questionnaire questionnaire);
 
 	List<Questionnaire> getListQuestionnaire(Integer page);
+	
+	Long getNbQuestionnaires();
+
+	Long getNbResults();
+	
+	List<Questionnaire> getLastQuestionnaires();
 }
