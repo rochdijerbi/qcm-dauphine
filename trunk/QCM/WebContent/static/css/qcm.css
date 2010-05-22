@@ -79,7 +79,7 @@ h1 {
 	background:#fae1e6;
 }
 
-#content input[type=submit], #content input[type=button], a#addTag {
+#content input[type=submit], #content input[type=button], a#addTag, a#pagination {
 	padding:5px 20px;
 	background:#a24571;
 	color:white;
@@ -126,6 +126,14 @@ a#addTag {
 	padding:10px;
 	-moz-border-radius:10px;
 	margin-top:10px;	
+}
+
+.last {
+	padding:10px;
+	-moz-border-radius:10px;
+	margin-top:10px;	
+	width:750px;
+	border:5px dashed #d4dfeb;
 }
 
 .answers ul {

@@ -29,6 +29,11 @@ public class QuestionnaireController {
 
 	@Autowired
 	private IQuestionnaireService questionnaireService;
+	
+	/**
+	 * Nombre de resultats par page.
+	 */
+	private static final int NB_RESULTS_BY_PAGE = 1;
 
 	@RequestMapping(value = "/questionnaire/{id}", method = RequestMethod.GET)
 	public String displayQuestionnairePage(@PathVariable("id") Long id,
@@ -140,11 +145,13 @@ public class QuestionnaireController {
 		return "questionnaire/edit";
 	}
 	
-	@RequestMapping("/questionnairelist/{page}")
-	public String addQuestion(@PathVariable("page") Integer page, HttpSession session, ModelMap model) {
+	@RequestMapping("/questionnaire/questionnairelist/{page}")
+	public String handleQuestionnaireList(@PathVariable("page") Integer page, HttpSession session, ModelMap model) {
 		model.put("listQuestionnaire", questionnaireService.getListQuestionnaire(page));
-
+		model.put("nbQuestionnaires", questionnaireService.getNbQuestionnaires());
+		model.put("nbResults", NB_RESULTS_BY_PAGE);
+		model.put("page", page);
+		
 		return "questionnairelist";
-
 	}
 }

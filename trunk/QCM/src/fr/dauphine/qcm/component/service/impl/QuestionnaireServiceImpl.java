@@ -78,4 +78,22 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 	public List<Questionnaire> getListQuestionnaire(Integer page) {
 		return questionnaireRepository.paginateListQuestionnaire(page);
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Long getNbQuestionnaires() {
+		return questionnaireRepository.getNbQuestionnaires();
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Long getNbResults() {
+		return resultRepository.getNbResults();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Questionnaire> getLastQuestionnaires() {
+		return questionnaireRepository.getLastQuestionnaires();
+	}
 }

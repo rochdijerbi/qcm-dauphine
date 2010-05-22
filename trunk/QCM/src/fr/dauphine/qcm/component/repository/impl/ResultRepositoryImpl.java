@@ -3,12 +3,12 @@ package fr.dauphine.qcm.component.repository.impl;
 import org.apache.commons.collections.Closure;
 import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import fr.dauphine.qcm.closure.RefreshClosure;
 import fr.dauphine.qcm.component.repository.IResultRepository;
-import fr.dauphine.qcm.model.Answer;
 import fr.dauphine.qcm.model.Result;
 
 @Repository
@@ -39,5 +39,13 @@ public final class ResultRepositoryImpl extends AbstractRepositoryImpl<Result>
 		CollectionUtils.forAllDo(result.getAnswers(), refreshClosure);
 
 		return super.save(result);
+	}
+	
+
+	@Override
+	public Long getNbResults() {
+		Query query = getCurrentSession().createQuery("SELECT COUNT(*) FROM Result r");
+		
+		return (Long) query.uniqueResult();
 	}
 }

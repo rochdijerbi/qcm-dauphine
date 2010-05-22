@@ -10,5 +10,8 @@ public interface IQuestionnaireRepository extends
 	Questionnaire loadForUser(Long questionnaireId, Long id);
 
 	List<Questionnaire> paginateListQuestionnaire(Integer page);
+	
+	Long getNbQuestionnaires();
 
+	List<Questionnaire> getLastQuestionnaires();
 }
