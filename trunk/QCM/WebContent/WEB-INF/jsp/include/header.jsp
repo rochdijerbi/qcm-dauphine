@@ -23,7 +23,7 @@
 		<div id="menu">
 			<h1><a href="<spring:url value="/" />">QCM</a></h1>
 			<ul id="navigation">
-				<li><a href="<spring:url value="/questionnairelist/0" />">
+				<li><a href="<spring:url value="/questionnaire/questionnairelist/0" />">
 					Questionnaires
 				</a></li>
 				<li class="separator"></li>
