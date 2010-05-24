@@ -38,7 +38,7 @@ public class LoginController {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelMap displayLoginPage() {
-		return new ModelMap("user", new User());
+		return new ModelMap(IModelConstants.USER, new User());
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class LoginController {
 	 * @return La vue ˆ afficher
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String handleLoginForm(@Valid @ModelAttribute("user") User user,
+	public String handleLoginForm(@Valid @ModelAttribute(IModelConstants.USER) User user,
 			BindingResult result, HttpSession session) {
 		String view = "login";
 
@@ -64,7 +64,7 @@ public class LoginController {
 
 			} catch (FunctionalException e) {
 				result
-						.addError(new FieldError("user", "login", e
+						.addError(new FieldError(IModelConstants.USER, "login", e
 								.getMessage()));
 			}
 		}

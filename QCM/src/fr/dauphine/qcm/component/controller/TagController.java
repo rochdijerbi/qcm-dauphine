@@ -15,7 +15,7 @@ public class TagController {
 
 	@RequestMapping("/tag")
 	public String displayTagCloud(ModelMap model) {
-		model.put("tags", tagService.getAll());
+		model.put(IModelConstants.TAGS, tagService.getAll());
 		return "tag";
 	}
 }

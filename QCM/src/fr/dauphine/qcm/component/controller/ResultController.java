@@ -28,7 +28,7 @@ public class ResultController {
 			return "redirect:/login";
 
 		} else {
-			model.put("result", questionnaireService
+			model.put(IModelConstants.RESULT, questionnaireService
 					.getResultByUserAndQuestionnaireId(user, id));
 
 			return "result";
