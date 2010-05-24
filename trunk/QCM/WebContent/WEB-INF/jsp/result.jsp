@@ -9,15 +9,6 @@
 					sur 
 				<c:out value="${fn:length(result.questionnaire.questions)}" />
 			</li>
-			<li>
-				<h3>tags</h3>
-				
-				<c:forEach items="${result.questionnaire.tags}" var="tag">
-					<span class="deleteTag">
-						${tag}
-					</span>
-				</c:forEach>
-			</li>
 		</ul>
 	</c:if>
 	<div id="content">
@@ -27,6 +18,14 @@
 			</c:when>
 			<c:otherwise>
 				<h2><c:out value="${result.questionnaire}" /></h2>
+				<p>${result.questionnaire.description}</p>
+				<div class="tags">
+					<c:forEach items="${result.questionnaire.tags}" var="tag">
+						<span class="tag">${tag}</span>
+					</c:forEach>
+				</div>
+				<br />
+				
 				<ul>
 					<c:forEach items="${result.questionnaire.questions}" var="question" varStatus="statusQ">
 						<li class="questions">
