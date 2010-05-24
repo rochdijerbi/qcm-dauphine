@@ -75,8 +75,8 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Questionnaire> getListQuestionnaire(Integer page) {
-		return questionnaireRepository.paginateListQuestionnaire(page);
+	public List<Questionnaire> getListQuestionnaire(Integer page, boolean admin) {
+		return questionnaireRepository.paginateListQuestionnaire(page, admin);
 	}
 	
 	@Override
@@ -93,19 +93,19 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Questionnaire> getLastQuestionnaires() {
-		return questionnaireRepository.getLastQuestionnaires();
+	public List<Questionnaire> getLastQuestionnaires(boolean admin) {
+		return questionnaireRepository.getLastQuestionnaires(admin);
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Questionnaire> getPopularQuestionnaires() {
-		return questionnaireRepository.getPopularQuestionnaires();
+	public List<Questionnaire> getPopularQuestionnaires(boolean admin) {
+		return questionnaireRepository.getPopularQuestionnaires(admin);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Long getNbQuestionnairesValid() {
-		return questionnaireRepository.getNbQuestionnairesValid();
+	public Long getNbQuestionnairesValid(boolean admin) {
+		return questionnaireRepository.getNbQuestionnairesValid(admin);
 	}
 }

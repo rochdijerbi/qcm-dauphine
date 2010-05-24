@@ -9,14 +9,14 @@ public interface IQuestionnaireRepository extends
 
 	Questionnaire loadForUser(Long questionnaireId, Long id);
 
-	List<Questionnaire> paginateListQuestionnaire(Integer page);
+	List<Questionnaire> paginateListQuestionnaire(Integer page, boolean admin);
 	
 	Long getNbQuestionnaires();
 
-	List<Questionnaire> getLastQuestionnaires();
+	List<Questionnaire> getLastQuestionnaires(boolean admin);
 
-	List<Questionnaire> getPopularQuestionnaires();
+	List<Questionnaire> getPopularQuestionnaires(boolean admin);
 
-	Long getNbQuestionnairesValid();
+	Long getNbQuestionnairesValid(boolean admin);
 	
 }

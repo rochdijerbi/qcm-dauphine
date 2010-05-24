@@ -22,6 +22,7 @@ import fr.dauphine.qcm.model.Questionnaire;
 import fr.dauphine.qcm.model.Result;
 import fr.dauphine.qcm.model.Tag;
 import fr.dauphine.qcm.model.User;
+import fr.dauphine.qcm.util.UserUtil;
 
 @Controller
 @SessionAttributes( { "result", "questionnaire" })
@@ -29,7 +30,7 @@ public class QuestionnaireController {
 
 	@Autowired
 	private IQuestionnaireService questionnaireService;
-	
+
 	/**
 	 * Nombre de resultats par page.
 	 */
@@ -135,7 +136,6 @@ public class QuestionnaireController {
 		questionnaire.getTags().remove(new Tag(tagLabel));
 		return "questionnaire/tags";
 	}
-	
 
 	@RequestMapping("/questionnaire/addQuestion")
 	public String addQuestion(
@@ -144,14 +144,26 @@ public class QuestionnaireController {
 		questionnaire.addQuestion(Question.createEmpty());
 		return "questionnaire/edit";
 	}
-	
+
 	@RequestMapping("/questionnaire/questionnairelist/{page}")
-	public String handleQuestionnaireList(@PathVariable("page") Integer page, HttpSession session, ModelMap model) {
-		model.put("listQuestionnaire", questionnaireService.getListQuestionnaire(page));
-		model.put("nbQuestionnaires", questionnaireService.getNbQuestionnairesValid());
+	public String handleQuestionnaireList(@PathVariable("page") Integer page,
+			HttpSession session, ModelMap model) {
+		User userCourant = UserUtil.getUser(session);
+
+		if (userCourant != null) {
+			model.put("listQuestionnaire", questionnaireService
+					.getListQuestionnaire(page, userCourant.isAdmin()));
+			model.put("nbQuestionnaires", questionnaireService
+					.getNbQuestionnairesValid(userCourant.isAdmin()));
+		} else {
+			model.put("listQuestionnaire", questionnaireService
+					.getListQuestionnaire(page, false));
+			model.put("nbQuestionnaires", questionnaireService
+					.getNbQuestionnairesValid(false));
+		}
 		model.put("nbResults", NB_RESULTS_BY_PAGE);
 		model.put("page", page);
-		
+
 		return "questionnairelist";
 	}
 }
