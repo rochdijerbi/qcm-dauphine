@@ -14,17 +14,23 @@
 		<c:when test="${not empty listQuestionnaire}">
 			<c:forEach items="${listQuestionnaire}" var="questionnaire">
 				<div class="list-box">
-					<h3>
-						<a href="<spring:url value="/questionnaire/${questionnaire.id}" />"> 
-							<c:out value="${questionnaire.title}" />
-						</a>
-					</h3>
-					<c:out value="${questionnaire.description}" />	
 					<div class="list-stat answered">
 						<div class="list-count">
 							<c:out value="${questionnaire.resultsSize}" /> 
 						</div>
-						<div>Hits</div>
+						<div>hits</div>
+					</div>
+					
+					<h4>
+						<a href="<spring:url value="/questionnaire/${questionnaire.id}" />"> 
+							<c:out value="${questionnaire.title}" />
+						</a>
+					</h4>
+					<c:out value="${questionnaire.description}" />	
+					<div class="tags">
+						<c:forEach items="${questionnaire.tags}" var="tag">
+							<span class="tag">${tag}</span>
+						</c:forEach>
 					</div>	
 				</div>
 			</c:forEach>

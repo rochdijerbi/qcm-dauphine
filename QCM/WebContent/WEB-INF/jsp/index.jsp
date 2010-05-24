@@ -5,60 +5,66 @@
 			<h3>Statistiques</h3>
 			<strong>${nbQuestionnaires}</strong> questionnaire(s)<br/>
 			<strong>${nbUsers}</strong> utilisateur(s)<br/>
-			<strong>${nbTakenQCM}</strong> QCM pris
+			<strong>${nbTakenQCM}</strong> QCM passés
+		</li>
+		
+		<li>
+			<h3>Qu'est-ce qu'un QCM ?</h3>
+			<p>Un questionnaire à choix multiples (ou QCM) est un questionnaire dans lequel sont proposées plusieurs réponses pour chaque question.</p>
+			<p>Une ou plusieurs de ces réponses sont correctes.</p>
 		</li>
 	</ul>
 	
 	<div id="content">
-		<h2><c:out value="Bienvenue sur le QCM !" /></h2>
-		<p>Inscrivez vous dès maintenant pour remplir les QCM.</p>
-		
-		<div class="definition">
-			<h3>Qu'est-ce qu'un QCM ?</h3>
-			Un questionnaire à choix multiples (ou QCM) est un questionnaire  
-			dans lequel sont proposées plusieurs réponses pour chaque question. 
-			Une ou plusieurs de ces réponses sont correctes.
-		</div>
-		
-		<div class="indexList">
-			<h3>Derniers QCM ajoutés</h3>
+		<h2><c:out value="Derniers QCM ajoutés" /></h2>
 			<c:forEach items="${listLastQCM}" var="questionnaire">
 				<div class="list-box">
+					<div class="list-stat answered">
+						<span class="list-count">
+							${questionnaire.resultsSize}
+						</span>
+						hits
+					</div>	
+					
 					<h4>
 						<a href="<spring:url value="/questionnaire/${questionnaire.id}" />"> 
-							<c:out value="${questionnaire.title}" />
+							${questionnaire.title}
 						</a>
 					</h4>
-					<c:out value="${questionnaire.description}" />	
-					<div class="list-stat answered">
-						<div class="list-count">
-							<c:out value="${questionnaire.resultsSize}" /> 
-						</div>
-						<div>Hits</div>
-					</div>	
+					${questionnaire.description}
+					
+					<div class="tags">
+						<c:forEach items="${questionnaire.tags}" var="tag">
+							<span class="tag">${tag}</span>
+						</c:forEach>
+					</div>
 				</div>
 			</c:forEach>
-		</div>
 		
-		<div class="indexList">
-			<h3>QCM les plus joués !</h3>
+		<h2><c:out value="QCM les plus joués !" /></h2>
 			<c:forEach items="${listPopularQCM}" var="questionnaire">
 				<div class="list-box">
+					<div class="list-stat answered">
+						<span class="list-count">
+							${questionnaire.resultsSize}
+						</span>
+						hits
+					</div>	
+					
 					<h4>
 						<a href="<spring:url value="/questionnaire/${questionnaire.id}" />"> 
-							<c:out value="${questionnaire.title}" />
+							${questionnaire.title}
 						</a>
 					</h4>
-					<c:out value="${questionnaire.description}" />	
-					<div class="list-stat answered">
-						<div class="list-count">
-							<c:out value="${questionnaire.resultsSize}" /> 
-						</div>
-						<div>Hits</div>
+					${questionnaire.description}
+					
+					<div class="tags">
+						<c:forEach items="${questionnaire.tags}" var="tag">
+							<span class="tag">${tag}</span>
+						</c:forEach>
 					</div>	
 				</div>
 			</c:forEach>
-		</div>
 	</div>
 	
 <jsp:include page="include/footer.jsp" />
