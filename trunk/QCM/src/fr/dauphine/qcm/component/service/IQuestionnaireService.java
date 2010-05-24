@@ -18,15 +18,16 @@ public interface IQuestionnaireService {
 
 	void saveQuestionnaire(Questionnaire questionnaire);
 
-	List<Questionnaire> getListQuestionnaire(Integer page);
+	List<Questionnaire> getListQuestionnaire(Integer page, boolean admin);
 	
-	Long getNbQuestionnairesValid();
+	Long getNbQuestionnairesValid(boolean admin);
 	
 	Long getNbQuestionnaires();
 
 	Long getNbResults();
 	
-	List<Questionnaire> getLastQuestionnaires();
+	List<Questionnaire> getLastQuestionnaires(boolean admin);
 	
-	List<Questionnaire> getPopularQuestionnaires();
+	List<Questionnaire> getPopularQuestionnaires(boolean admin);
+	
 }
