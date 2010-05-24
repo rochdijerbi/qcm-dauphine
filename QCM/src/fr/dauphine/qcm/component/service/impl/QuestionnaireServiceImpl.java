@@ -57,6 +57,8 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 			questionnaire.getTags().size(); // Lazy
 			
 			questionnaire.shuffleQuestions();
+			
+			questionnaire = questionnaireRepository.unproxy(questionnaire);
 		}
 
 		return questionnaire;
@@ -72,6 +74,8 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 			questionnaire.getTags().size(); // Lazy
 			
 			questionnaire.shuffleQuestions();
+			
+			questionnaire = questionnaireRepository.unproxy(questionnaire);
 		}
 
 		return questionnaire;

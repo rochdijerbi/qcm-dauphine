@@ -35,7 +35,7 @@ public class UserServiceImpl implements IUserService {
 			throw new FunctionalException("wrong credentials");
 		}
 
-		return databaseUser;
+		return userRepository.unproxy(databaseUser);
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class UserServiceImpl implements IUserService {
 		}
 
 		user.setPassword(shaHex(user.getPassword()));
-		return userRepository.save(user);
+		return userRepository.unproxy(userRepository.save(user));
 	}
 
 	/**
@@ -71,8 +71,10 @@ public class UserServiceImpl implements IUserService {
 
 			// Les meilleurs scores en premier
 			Collections.sort(user.getResults());
+			
+			user = userRepository.unproxy(user);
 		}
-
+		
 		return user;
 	}
 
