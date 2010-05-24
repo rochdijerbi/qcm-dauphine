@@ -18,9 +18,15 @@ import fr.dauphine.qcm.util.UserUtil;
 @Controller
 public class IndexController {
 
+	/**
+	 * Service des questionnaires
+	 */
 	@Autowired
 	private IQuestionnaireService questionnaireService;
 
+	/**
+	 * Service des utilisateurs
+	 */
 	@Autowired
 	private IUserService userService;
 

@@ -10,10 +10,16 @@ import fr.dauphine.qcm.component.repository.ITagRepository;
 import fr.dauphine.qcm.component.service.ITagService;
 import fr.dauphine.qcm.model.Tag;
 
+/**
+ * Service des tags (implementation).
+ */
 @Service
 @Transactional(readOnly = true)
 public class TagServiceImpl implements ITagService {
 
+	/**
+	 * Depot des tags
+	 */
 	@Autowired
 	private ITagRepository tagRepository;
 

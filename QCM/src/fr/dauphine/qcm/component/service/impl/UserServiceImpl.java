@@ -15,9 +15,16 @@ import fr.dauphine.qcm.exception.FunctionalException;
 import fr.dauphine.qcm.model.Result;
 import fr.dauphine.qcm.model.User;
 
+/**
+ * Service des utilisateurs (implementation).
+ */
 @Service
+@Transactional(readOnly = true)
 public class UserServiceImpl implements IUserService {
 
+	/**
+	 * Depot des utilisateurs.
+	 */
 	@Autowired
 	private IUserRepository userRepository;
 
@@ -25,7 +32,6 @@ public class UserServiceImpl implements IUserService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@Transactional(readOnly = true)
 	public User checkCredentials(User user) throws FunctionalException {
 		User databaseUser = userRepository.loadByLogin(user.getLogin());
 		String passwordHash = shaHex(user.getPassword());
@@ -42,7 +48,7 @@ public class UserServiceImpl implements IUserService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@Transactional
+	@Transactional(readOnly = false)
 	public User createAccount(User user) throws FunctionalException {
 		User databaseUser = userRepository.loadByLogin(user.getLogin());
 
@@ -58,7 +64,6 @@ public class UserServiceImpl implements IUserService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@Transactional(readOnly = true)
 	public User getById(Long id) {
 		User user = userRepository.load(id);
 
@@ -78,21 +83,28 @@ public class UserServiceImpl implements IUserService {
 		return user;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	@Transactional(readOnly = true)
-	public List<User> getall() {
+	public List<User> getAll() {
 		return userRepository.loadAll();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	@Transactional
+	@Transactional(readOnly = false)
 	public User updateAccount(User user) {
 		userRepository.update(user);
 		return user;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	@Transactional(readOnly = true)
 	public Long getNbUsers() {
 		return userRepository.getNbUsers();
 	}
