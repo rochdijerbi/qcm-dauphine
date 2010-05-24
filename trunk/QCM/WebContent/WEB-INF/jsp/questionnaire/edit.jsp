@@ -1,6 +1,16 @@
 <jsp:include page="../include/header.jsp" />
 	<%@include file="../include/taglib.jsp" %>
-	<form:form modelAttribute="questionnaire" action="/QCM/questionnaire/create">
+	
+	<c:choose>
+		<c:when test="${empty questionnaire.id}">
+			<c:set var="action" value="/QCM/questionnaire/create"/>
+		</c:when>
+		<c:otherwise>
+			<c:set var="action" value="/QCM/questionnaire/${questionnaire.id}/edit" />
+		</c:otherwise>
+	</c:choose>
+		
+	<form:form modelAttribute="questionnaire" action="${action}">
 		<ul id="advice">
 			<li>
 				<h3>dates</h3>

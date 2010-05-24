@@ -1,7 +1,15 @@
 <%@include file="../include/taglib.jsp" %>
+<c:set var="connectedUser" value="${sessionScope.connected_user}" />
 <jsp:include page="../include/header.jsp" />
+	<c:if test="${connectedUser.admin}">
+		<ul id="advice">
+			<li>
+				<h3>meilleurs scores</h3>
+			</li>
+		</ul>
+	</c:if>
 	<div id="content">
-			<c:choose>
+		<c:choose>
 			<c:when test="${empty result.questionnaire}">
 				<p>
 					Vous ne pouvez pas répondre à ce questionnaire.
@@ -9,6 +17,12 @@
 			</c:when>
 			<c:otherwise>
 				<h2><c:out value="${result.questionnaire}" /></h2>
+				
+				<c:if test="${connectedUser.admin}">
+					<a href="<spring:url value="/questionnaire/${result.questionnaire.id}/edit" />" class="button">
+						Modifier le questionnaire
+					</a>
+				</c:if>
 				
 				<form:form modelAttribute="result">
 					<form:errors path="*" />
@@ -22,7 +36,15 @@
 									<ul>
 										<c:forEach items="${question.answers}" var="answer" varStatus="statusA">
 											<li>
-												<form:radiobutton path="answers[${statusQ.index}].id" value="${answer.id}" label="${answer.label}" />
+												<c:choose>
+													<c:when test="${connectedUser.admin}">
+														${answer.label}
+													</c:when>
+													<c:otherwise>
+														<form:radiobutton path="answers[${statusQ.index}].id" value="${answer.id}" label="${answer.label}" />
+													</c:otherwise>
+												</c:choose>
+												
 											</li>
 										</c:forEach>
 									</ul>
@@ -31,7 +53,9 @@
 						</c:forEach>
 					</ul>
 					
-					<input type="submit" value="Envoyer les réponses" />
+					<c:if test="${not connectedUser.admin}">
+						<input type="submit" value="Envoyer les réponses" />
+					</c:if>
 				</form:form>
 			</c:otherwise>
 		</c:choose>
