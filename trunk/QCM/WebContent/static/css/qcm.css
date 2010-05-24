@@ -50,21 +50,25 @@ h1 {
 	width:50%;
 }
 
-.deleteTag {
-	background:#bce85d;
-	border:1px solid #a9d24f;
-	color:black;
-	-moz-border-radius:5px;
-	padding:2px 2px 2px 5px;
-	cursor:pointer;
-	white-space:nowrap;
-	display:block;
-	float:left;
-	margin-right:5px;
-	margin-bottom:5px;
+.tags {
+	padding:5px 5px 10px 0;
 }
 
-.deleteTag a {
+.tag {
+	background:#e0eaf1;
+	border:1px solid #3e6d8e;
+	color:#3e6d8e;
+	padding:2px 5px 2px 5px;
+	cursor:pointer;
+	display:block;
+	float:left;
+	white-space:nowrap;
+	font-size:10pt;
+	font-family:Arial;
+	margin-right:5px;
+}
+
+.tag a {
 	text-decoration:none;
 	color:black;
 	padding:0px 3px;
@@ -72,12 +76,14 @@ h1 {
 	background:#a9d24f;
 }
 
-.deleteTag:hover {
-	background:#a9d24f;
+.tag:hover {
+	background:#3e6d8e;
+	color:#e0eaf1;
 }
 
-.deleteTag:hover a {
-	background:#87aa3b;
+.tag:hover a {
+	background:#e0eaf1;
+	color:#3e6d8e;
 }
 
 #content textarea {
@@ -89,7 +95,7 @@ h1 {
 	background:#fae1e6;
 }
 
-#content input[type=submit], #content input[type=button], a#addTag, a#pagination {
+#content input[type=submit], #content input[type=button], a#addTag, a#pagination, a#button {
 	padding:5px 20px;
 	background:#a24571;
 	color:white;
@@ -198,6 +204,8 @@ input[type=checkbox].correct {
 	clear:both;
 	padding:15px;
 	background:white;
+	width:1000px;
+	margin:0 auto;
 }
 
 #advice h3 {
@@ -208,7 +216,7 @@ input[type=checkbox].correct {
 
 #advice {
 	width:250px;
-	float:left;
+	float:right;
 }
 
 #advice li {
@@ -220,15 +228,16 @@ input[type=checkbox].correct {
 }
 
 #content {
-	margin-left:265px;
+	margin-right:265px;
 	padding:10px;
 	padding-top:0;
 }
 
 #content h2 {
-	font-size:25pt;
-	padding-bottom:10px;
-	color:#3a252a;
+	font-size:20pt;
+	padding-top:10px;
+	color:black;
+	border-bottom:1px solid black;
 }
 
 #footer {
@@ -240,58 +249,49 @@ input[type=checkbox].correct {
 }
 
 #avatar{
-	    withd: 50px;
+	    width: 50px;
         height: 100px;	
 }
 
-.list-box{
-font-size:150%;
-border-bottom:3px dotted #999999;
-padding:11px;
-padding-bottom:20px;
-width:730px;
+.list-box {
+	border-bottom:1px dotted gray;
+	padding:11px;
+	padding-bottom:20px;
 }
 
-.list-box a{
+.list-box h4 a {
+	font-size:17pt;
 	font-weight:bold;
 	text-decoration:none;
-	color:#000000;
+	color:#0077ce;
 	display:block;
 }
 
-.list-box:hover{
-	background:none repeat scroll 0 0 #C0C0C0;
+.list-box h4 a:hover {
+	text-decoration:underline;	
 }
 
-.list-count{
-background:none repeat scroll 0 0 transparent;
-border:0 none;
-font-size:170%;
-margin:0;
-padding:0;
-vertical-align:baseline;
+.list-stat {
+	float:right;
+	font-family:Arial;
+	color:white;
+	padding:5px;
+	text-align:center;
+	min-width:50px;
+	margin-top:5px;
 }
 
-.list-stat{
-float:right;
-height:38px;
-margin:0 3px 0 0;
-padding:5px;
-width:48px;
-color:#FFFFFF;
-margin-top:-33px;
-padding:4px 0;
-text-align:center;
-font-size:50%;
-font-weight:bold;
+.list-count {
+	display:block;
+	font-size:18pt;
 }
 
-.answered{
-	background:none repeat scroll 0 0 #75845C;
+.answered {
+	background:#75845C;
 }
 
-.unanswered{
-	background:none repeat scroll 0 0 #9A4444;
+.unanswered {
+	background:#9A4444;
 }
 
 .user-editbox{
@@ -307,38 +307,3 @@ font-weight:bold;
 	margin:4px;	
 }
 
-/* tables */
-table.tablesorter {
-	font-family:arial;
-	background-color: #CDCDCD;
-	margin:10px 0pt 15px;
-	font-size: 8pt;
-	text-align: left;
-}
-table.tablesorter thead tr th, table.tablesorter tfoot tr th {
-	background-color: #e6EEEE;
-	border: 1px solid #FFF;
-	font-size: 8pt;
-	padding: 4px;
-}
-table.tablesorter thead tr .header {
-	background-image: url(../img/bg.gif);
-	background-repeat: no-repeat;
-	background-position: center right;
-	cursor: pointer;
-}
-table.tablesorter tbody td {
-	color: #3D3D3D;
-	padding: 4px;
-	background-color: #FFF;
-	vertical-align: top;
-}
-table.tablesorter thead tr .headerSortUp {
-	background-image: url(../img/asc.gif);
-}
-table.tablesorter thead tr .headerSortDown {
-	background-image: url(../img/desc.gif);
-}
-table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
-background-color: #8dbdd8;
-}
