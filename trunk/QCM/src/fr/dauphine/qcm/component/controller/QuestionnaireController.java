@@ -148,7 +148,7 @@ public class QuestionnaireController {
 	@RequestMapping("/questionnaire/questionnairelist/{page}")
 	public String handleQuestionnaireList(@PathVariable("page") Integer page, HttpSession session, ModelMap model) {
 		model.put("listQuestionnaire", questionnaireService.getListQuestionnaire(page));
-		model.put("nbQuestionnaires", questionnaireService.getNbQuestionnaires());
+		model.put("nbQuestionnaires", questionnaireService.getNbQuestionnairesValid());
 		model.put("nbResults", NB_RESULTS_BY_PAGE);
 		model.put("page", page);
 		

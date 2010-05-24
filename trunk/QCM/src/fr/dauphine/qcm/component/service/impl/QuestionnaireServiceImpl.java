@@ -102,4 +102,10 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 	public List<Questionnaire> getPopularQuestionnaires() {
 		return questionnaireRepository.getPopularQuestionnaires();
 	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Long getNbQuestionnairesValid() {
+		return questionnaireRepository.getNbQuestionnairesValid();
+	}
 }

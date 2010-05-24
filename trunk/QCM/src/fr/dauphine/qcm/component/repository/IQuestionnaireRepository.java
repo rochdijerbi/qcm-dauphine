@@ -16,5 +16,7 @@ public interface IQuestionnaireRepository extends
 	List<Questionnaire> getLastQuestionnaires();
 
 	List<Questionnaire> getPopularQuestionnaires();
+
+	Long getNbQuestionnairesValid();
 	
 }

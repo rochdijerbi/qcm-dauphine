@@ -20,6 +20,8 @@ public interface IQuestionnaireService {
 
 	List<Questionnaire> getListQuestionnaire(Integer page);
 	
+	Long getNbQuestionnairesValid();
+	
 	Long getNbQuestionnaires();
 
 	Long getNbResults();
