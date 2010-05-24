@@ -45,7 +45,7 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 	@Override
 	@Transactional
 	public void saveQuestionnaire(Questionnaire questionnaire) {
-		questionnaireRepository.save(questionnaire);
+		questionnaireRepository.saveOrUpdate(questionnaire);
 	}
 
 	@Override
@@ -54,6 +54,8 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 		Questionnaire questionnaire = questionnaireRepository.load(id);
 
 		if (questionnaire != null) {
+			questionnaire.getTags().size(); // Lazy
+			
 			questionnaire.shuffleQuestions();
 		}
 
@@ -67,6 +69,8 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 				user.getId());
 
 		if (questionnaire != null) {
+			questionnaire.getTags().size(); // Lazy
+			
 			questionnaire.shuffleQuestions();
 		}
 
@@ -76,7 +80,7 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Questionnaire> getListQuestionnaire(Integer page, boolean admin) {
-		return questionnaireRepository.paginateListQuestionnaire(page, admin);
+		return loadTags(questionnaireRepository.paginateListQuestionnaire(page, admin));
 	}
 	
 	@Override
@@ -94,18 +98,26 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Questionnaire> getLastQuestionnaires(boolean admin) {
-		return questionnaireRepository.getLastQuestionnaires(admin);
+		return loadTags(questionnaireRepository.getLastQuestionnaires(admin));
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
 	public List<Questionnaire> getPopularQuestionnaires(boolean admin) {
-		return questionnaireRepository.getPopularQuestionnaires(admin);
+		return loadTags(questionnaireRepository.getPopularQuestionnaires(admin));
 	}
-
+	
 	@Override
 	@Transactional(readOnly = true)
 	public Long getNbQuestionnairesValid(boolean admin) {
 		return questionnaireRepository.getNbQuestionnairesValid(admin);
+	}
+	
+	private List<Questionnaire> loadTags(List<Questionnaire> questionnaires) {
+		for (Questionnaire questionnaire : questionnaires) {
+			questionnaire.getTags().size(); // Lazy
+		}
+		
+		return questionnaires;
 	}
 }
