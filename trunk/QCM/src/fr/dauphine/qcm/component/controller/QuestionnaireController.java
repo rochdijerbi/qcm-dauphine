@@ -22,7 +22,6 @@ import fr.dauphine.qcm.model.Questionnaire;
 import fr.dauphine.qcm.model.Result;
 import fr.dauphine.qcm.model.Tag;
 import fr.dauphine.qcm.model.User;
-import fr.dauphine.qcm.util.UserUtil;
 
 @Controller
 @SessionAttributes( { "result", "questionnaire" })
@@ -47,8 +46,16 @@ public class QuestionnaireController {
 		} else {
 			Result result = new Result();
 			result.setUser(user);
-			result.setQuestionnaire(questionnaireService
-					.getQuestionnaireByIdAndUser(id, user));
+
+			// Les administrateurs peuvent voir tous les questionnaires
+			if (user.isAdmin()) {
+				result.setQuestionnaire(questionnaireService
+						.getQuestionnaireById(id));
+
+			} else {
+				result.setQuestionnaire(questionnaireService
+						.getQuestionnaireByIdAndUser(id, user));
+			}
 
 			model.put("result", result);
 			return "questionnaire/view";
@@ -148,7 +155,7 @@ public class QuestionnaireController {
 	@RequestMapping("/questionnaire/questionnairelist/{page}")
 	public String handleQuestionnaireList(@PathVariable("page") Integer page,
 			HttpSession session, ModelMap model) {
-		User userCourant = UserUtil.getUser(session);
+		User userCourant = getUser(session);
 
 		if (userCourant != null) {
 			model.put("listQuestionnaire", questionnaireService
