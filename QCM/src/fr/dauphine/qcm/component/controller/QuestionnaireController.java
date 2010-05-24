@@ -33,7 +33,7 @@ public class QuestionnaireController {
 	/**
 	 * Nombre de resultats par page.
 	 */
-	private static final int NB_RESULTS_BY_PAGE = 1;
+	private static final int NB_RESULTS_BY_PAGE = 2;
 
 	@RequestMapping(value = "/questionnaire/{id}", method = RequestMethod.GET)
 	public String displayQuestionnairePage(@PathVariable("id") Long id,

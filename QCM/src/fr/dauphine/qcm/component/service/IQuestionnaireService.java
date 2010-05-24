@@ -25,4 +25,6 @@ public interface IQuestionnaireService {
 	Long getNbResults();
 	
 	List<Questionnaire> getLastQuestionnaires();
+	
+	List<Questionnaire> getPopularQuestionnaires();
 }

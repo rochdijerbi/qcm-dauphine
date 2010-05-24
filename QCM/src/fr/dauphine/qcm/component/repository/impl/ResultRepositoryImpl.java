@@ -41,11 +41,11 @@ public final class ResultRepositoryImpl extends AbstractRepositoryImpl<Result>
 		return super.save(result);
 	}
 	
-
 	@Override
 	public Long getNbResults() {
 		Query query = getCurrentSession().createQuery("SELECT COUNT(*) FROM Result r");
 		
 		return (Long) query.uniqueResult();
 	}
+	
 }

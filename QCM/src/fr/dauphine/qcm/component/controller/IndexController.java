@@ -32,6 +32,7 @@ public class IndexController {
 		model.put("nbQuestionnaires", questionnaireService.getNbQuestionnaires());
 		model.put("nbTakenQCM", questionnaireService.getNbResults());
 		model.put("listLastQCM", questionnaireService.getLastQuestionnaires());
+		model.put("listPopularQCM", questionnaireService.getPopularQuestionnaires());
 		model.put("nbUsers", userService.getNbUsers());
 		
 		

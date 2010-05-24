@@ -65,4 +65,14 @@ public final class QuestionnaireRepositoryImpl extends
 
 		return criteria.list();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Questionnaire> getPopularQuestionnaires() {
+		Query query = getCurrentSession().createQuery("FROM Questionnaire q WHERE resultsSize != 0 ORDER BY resultsSize DESC");
+		query.setMaxResults(NB_RESULTS_POPULAR_QCM);
+	
+		return query.list();
+	}
+	
 }
