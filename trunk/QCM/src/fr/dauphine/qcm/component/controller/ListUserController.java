@@ -23,7 +23,7 @@ public class ListUserController {
 	 */
 	@RequestMapping("/userlist")
 	public String displayUserList(ModelMap model) {
-		model.put(IModelConstants.USER, userService.getall());
+		model.put(IModelConstants.USER, userService.getAll());
 		return "userlist";
 	}
 }
