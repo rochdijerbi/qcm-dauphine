@@ -10,7 +10,7 @@
 	<c:set var="connectedUser" value="${sessionScope.connected_user}" />
 
 	<div id="content">
-		<img src="<spring:url value="/user/photo" />" />
+		<img src="<spring:url value="/user/photo/${user.id}" />" />
 
 		<h2>${user}</h2>
 		
@@ -65,7 +65,7 @@
 					
 					<br />
 					<c:if test="${connectedUser.admin}">
-						<form:checkbox path="admin" value="${user.admin}" />
+						<form:checkbox path="admin" />
 						<form:label path="admin">Administrateur</form:label>
 						<form:errors path="admin" />
 						<br />

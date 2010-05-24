@@ -50,11 +50,29 @@ h1 {
 	width:50%;
 }
 
+#tagsCloud {
+	list-style:none;
+	min-height:100px;
+}
+
+#tagsCloud li {
+	padding:10px 10px 10px 0;
+	display:block;
+	float:left;
+	font-weight:bold;
+}
+
+.newline {
+	clear:left;
+	padding-top:10px;	
+}
+
 .tags {
 	padding:5px 5px 10px 0;
 }
 
 .tag {
+	font-weight:normal;
 	background:#e0eaf1;
 	border:1px solid #3e6d8e;
 	color:#3e6d8e;
