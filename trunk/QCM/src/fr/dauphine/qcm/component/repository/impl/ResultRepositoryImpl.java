@@ -33,10 +33,10 @@ public final class ResultRepositoryImpl extends AbstractRepositoryImpl<Result>
 
 	@Override
 	public Result save(Result result) {
-		Closure refreshClosure = new RefreshClosure(getCurrentSession());
+		//Closure refreshClosure = new RefreshClosure(getCurrentSession());
 		
-		refreshClosure.execute(result.getUser());
-		CollectionUtils.forAllDo(result.getAnswers(), refreshClosure);
+		//refreshClosure.execute(result.getUser());
+		//CollectionUtils.forAllDo(result.getAnswers(), refreshClosure);
 
 		return super.save(result);
 	}

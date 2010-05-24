@@ -8,9 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Entity
 public class User extends AbstractEntity {
@@ -37,6 +39,10 @@ public class User extends AbstractEntity {
 
 	@Formula(value = "(SELECT COUNT(*) FROM Result r WHERE r.user_id = id)")
 	private int resultsSize;
+
+	// Not saved into the database
+	@Transient
+	private CommonsMultipartFile uploadPhoto;
 
 	public void setLogin(String login) {
 		this.login = login;
@@ -93,5 +99,13 @@ public class User extends AbstractEntity {
 
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
+	}
+
+	public CommonsMultipartFile getUploadPhoto() {
+		return uploadPhoto;
+	}
+
+	public void setUploadPhoto(CommonsMultipartFile uploadPhoto) {
+		this.uploadPhoto = uploadPhoto;
 	}
 }

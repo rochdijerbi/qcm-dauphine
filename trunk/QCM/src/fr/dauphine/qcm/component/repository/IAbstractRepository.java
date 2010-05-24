@@ -40,5 +40,6 @@ public interface IAbstractRepository<T> {
 	public void refresh(T entity);
 	
 	public T merge(T entity);
-
+	
+	public T unproxy(T entity);
 }

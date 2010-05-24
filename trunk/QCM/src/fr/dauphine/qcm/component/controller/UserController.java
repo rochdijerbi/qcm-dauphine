@@ -1,9 +1,6 @@
 package fr.dauphine.qcm.component.controller;
 
-import java.io.IOException;
 import java.io.OutputStream;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,13 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import fr.dauphine.qcm.component.service.IUserService;
 import fr.dauphine.qcm.model.User;
 
 @Controller
 @RequestMapping("/user/{id}")
-@SessionAttributes( { "user" })
+@SessionAttributes("user")
 public class UserController {
 
 	@Autowired
@@ -33,21 +31,26 @@ public class UserController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String handleEditForm(@ModelAttribute("user") User user,
-			HttpSession session) {
+	public String handleEditForm(@ModelAttribute("user") User user) {
+		
+		CommonsMultipartFile avatar = user.getUploadPhoto();
+		if (avatar != null && !avatar.isEmpty()) {
+			user.setPhoto(avatar.getBytes());
+		}
+		
 		userService.updateAccount(user);
 		return "user";
 	}
 
 	@RequestMapping("/user/photo")
-	public void displayphoto(@ModelAttribute("user") User user,
-			OutputStream output, HttpSession session) {
+	public String displayphoto(@ModelAttribute("user") User user,
+			OutputStream output) {
 		try {
 			output.write(user.getPhoto());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			return null;
 
+		} catch (Throwable e) {
+			return "redirect:/static/img/default_profile.jpg";
+		}
 	}
 }

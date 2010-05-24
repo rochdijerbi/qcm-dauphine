@@ -5,9 +5,11 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.proxy.HibernateProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.dauphine.qcm.component.repository.IAbstractRepository;
@@ -128,5 +130,15 @@ public abstract class AbstractRepositoryImpl<T extends Identifiable> implements
 	protected void paginate(Query query, int page) {
 		query.setMaxResults(NB_RESULTS_BY_PAGE);
 		query.setFirstResult(NB_RESULTS_BY_PAGE * page);
+	}
+
+	public T unproxy(T entity) {
+		Hibernate.initialize(entity);
+		if (entity instanceof HibernateProxy) {
+			entity = (T) ((HibernateProxy) entity)
+					.getHibernateLazyInitializer().getImplementation();
+		}
+
+		return entity;
 	}
 }
