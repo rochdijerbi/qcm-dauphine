@@ -96,4 +96,10 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 	public List<Questionnaire> getLastQuestionnaires() {
 		return questionnaireRepository.getLastQuestionnaires();
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Questionnaire> getPopularQuestionnaires() {
+		return questionnaireRepository.getPopularQuestionnaires();
+	}
 }

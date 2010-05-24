@@ -28,6 +28,7 @@ public abstract class AbstractRepositoryImpl<T extends Identifiable> implements
 	 */
 	protected static final int NB_RESULTS_BY_PAGE = 2;
 	protected static final int NB_RESULTS_LAST_QCM = 5;
+	protected static final int NB_RESULTS_POPULAR_QCM = 5;
 
 	/**
 	 * Session factory Hibernate.
