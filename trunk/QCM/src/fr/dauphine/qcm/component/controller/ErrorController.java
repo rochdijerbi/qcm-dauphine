@@ -23,7 +23,7 @@ public class ErrorController {
 	@RequestMapping("/error/{code}")
 	public String displayError(@PathVariable("code") Integer code,
 			ModelMap model) {
-		model.put("code", code);
+		model.put(IModelConstants.CODE, code);
 
 		return "error";
 	}

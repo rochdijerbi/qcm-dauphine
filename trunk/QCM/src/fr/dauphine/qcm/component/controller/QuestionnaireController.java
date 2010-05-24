@@ -24,7 +24,7 @@ import fr.dauphine.qcm.model.Tag;
 import fr.dauphine.qcm.model.User;
 
 @Controller
-@SessionAttributes( { "result", "questionnaire" })
+@SessionAttributes( { IModelConstants.RESULT, IModelConstants.QUESTIONNAIRE })
 public class QuestionnaireController {
 
 	@Autowired
@@ -57,14 +57,14 @@ public class QuestionnaireController {
 						.getQuestionnaireByIdAndUser(id, user));
 			}
 
-			model.put("result", result);
+			model.put(IModelConstants.RESULT, result);
 			return "questionnaire/view";
 		}
 	}
 
 	@RequestMapping(value = "/questionnaire/{id}", method = RequestMethod.POST)
 	public String processAnswersForm(
-			@Valid @ModelAttribute("result") Result result,
+			@Valid @ModelAttribute(IModelConstants.RESULT) Result result,
 			BindingResult binding, SessionStatus status, HttpSession session) {
 
 		if (binding.hasErrors()) {
@@ -88,7 +88,9 @@ public class QuestionnaireController {
 			return "redirect:/login";
 
 		} else {
-			model.put("questionnaire", Questionnaire.createEmpty());
+			model
+					.put(IModelConstants.QUESTIONNAIRE, Questionnaire
+							.createEmpty());
 			return "questionnaire/edit";
 		}
 	}
@@ -102,7 +104,7 @@ public class QuestionnaireController {
 			return "redirect:/login";
 
 		} else {
-			model.put("questionnaire", questionnaireService
+			model.put(IModelConstants.QUESTIONNAIRE, questionnaireService
 					.getQuestionnaireById(id));
 
 			return "questionnaire/edit";
@@ -112,7 +114,7 @@ public class QuestionnaireController {
 	@RequestMapping(value = { "/questionnaire/create",
 			"/questionnaire/{id}/edit" }, method = RequestMethod.POST)
 	public String handleQuestionnaireCreationAndModificationForm(
-			@Valid @ModelAttribute("questionnaire") Questionnaire questionnaire,
+			@Valid @ModelAttribute(IModelConstants.QUESTIONNAIRE) Questionnaire questionnaire,
 			BindingResult binding, SessionStatus status) {
 
 		if (binding.hasErrors()) {
@@ -128,7 +130,7 @@ public class QuestionnaireController {
 
 	@RequestMapping("/questionnaire/addTag/{tag}")
 	public String addTag(
-			@ModelAttribute("questionnaire") Questionnaire questionnaire,
+			@ModelAttribute(IModelConstants.QUESTIONNAIRE) Questionnaire questionnaire,
 			@PathVariable("tag") String tagLabel) {
 
 		questionnaire.getTags().add(new Tag(tagLabel));
@@ -137,7 +139,7 @@ public class QuestionnaireController {
 
 	@RequestMapping("/questionnaire/deleteTag/{tag}")
 	public String deleteTag(
-			@ModelAttribute("questionnaire") Questionnaire questionnaire,
+			@ModelAttribute(IModelConstants.QUESTIONNAIRE) Questionnaire questionnaire,
 			@PathVariable("tag") String tagLabel) {
 
 		questionnaire.getTags().remove(new Tag(tagLabel));
@@ -146,30 +148,30 @@ public class QuestionnaireController {
 
 	@RequestMapping("/questionnaire/addQuestion")
 	public String addQuestion(
-			@ModelAttribute("questionnaire") Questionnaire questionnaire) {
+			@ModelAttribute(IModelConstants.QUESTIONNAIRE) Questionnaire questionnaire) {
 
 		questionnaire.addQuestion(Question.createEmpty());
 		return "questionnaire/edit";
 	}
 
 	@RequestMapping("/questionnaire/questionnairelist/{page}")
-	public String handleQuestionnaireList(@PathVariable("page") Integer page,
+	public String displayQuestionnaireList(@PathVariable("page") Integer page,
 			HttpSession session, ModelMap model) {
 		User userCourant = getUser(session);
 
 		if (userCourant != null) {
-			model.put("listQuestionnaire", questionnaireService
+			model.put(IModelConstants.LIST_QUESTIONNAIRE, questionnaireService
 					.getListQuestionnaire(page, userCourant.isAdmin()));
-			model.put("nbQuestionnaires", questionnaireService
+			model.put(IModelConstants.NB_QUESTIONNAIRES, questionnaireService
 					.getNbQuestionnairesValid(userCourant.isAdmin()));
 		} else {
-			model.put("listQuestionnaire", questionnaireService
+			model.put(IModelConstants.LIST_QUESTIONNAIRE, questionnaireService
 					.getListQuestionnaire(page, false));
-			model.put("nbQuestionnaires", questionnaireService
+			model.put(IModelConstants.NB_QUESTIONNAIRES, questionnaireService
 					.getNbQuestionnairesValid(false));
 		}
-		model.put("nbResults", NB_RESULTS_BY_PAGE);
-		model.put("page", page);
+		model.put(IModelConstants.NB_RESULTS, NB_RESULTS_BY_PAGE);
+		model.put(IModelConstants.PAGE, page);
 
 		return "questionnairelist";
 	}
