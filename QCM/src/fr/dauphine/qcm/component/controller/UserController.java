@@ -16,21 +16,20 @@ import fr.dauphine.qcm.component.service.IUserService;
 import fr.dauphine.qcm.model.User;
 
 @Controller
-@RequestMapping("/user/{id}")
 @SessionAttributes(IModelConstants.USER)
 public class UserController {
 
 	@Autowired
 	private IUserService userService;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
 	public String displayProfilePage(@PathVariable("id") Long id, ModelMap model) {
 		model.put(IModelConstants.USER, userService.getById(id));
 
 		return "user";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.POST)
 	public String handleEditForm(@ModelAttribute(IModelConstants.USER) User user) {
 
 		CommonsMultipartFile avatar = user.getUploadPhoto();
@@ -42,9 +41,9 @@ public class UserController {
 		return "user";
 	}
 
-	@RequestMapping("/user/photo")
-	public String displayphoto(@ModelAttribute(IModelConstants.USER) User user,
-			OutputStream output) {
+	@RequestMapping("/user/photo/{id}")
+	public String displayphoto(@PathVariable("id") Long id,
+			@ModelAttribute(IModelConstants.USER) User user, OutputStream output) {
 		try {
 			output.write(user.getPhoto());
 			return null;

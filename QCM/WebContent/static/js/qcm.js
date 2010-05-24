@@ -3,9 +3,6 @@ $(document).ready(function () {
 	// Creation de questionnaire
 	bindAddQuestion();
 	bindAddAnchor();
-	
-	// Nuage de tags
-	$('#tagsCloud').tagcloud();
 });
 
 /********************************************************************************************

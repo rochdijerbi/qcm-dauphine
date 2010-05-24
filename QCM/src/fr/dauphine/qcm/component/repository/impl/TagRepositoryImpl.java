@@ -20,7 +20,7 @@ public class TagRepositoryImpl extends AbstractRepositoryImpl<Tag> implements
 	@SuppressWarnings("unchecked")
 	public Collection<Tag> loadAllOrderedByQuestionnairesSize() {
 		Criteria criteria = getCurrentSession().createCriteria(Tag.class);
-		criteria.addOrder(Order.asc("questionnairesSize"));
+		criteria.addOrder(Order.desc("questionnairesSize"));
 
 		return criteria.list();
 	}
