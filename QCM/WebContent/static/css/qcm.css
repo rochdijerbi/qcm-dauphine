@@ -259,9 +259,12 @@ input[type=checkbox].correct {
 	padding-bottom:20px;
 }
 
-.list-box h4 a {
+.list-box h4 {
 	font-size:17pt;
-	font-weight:bold;
+	font-weight:bold;	
+}
+
+.list-box h4 a {
 	text-decoration:none;
 	color:#0077ce;
 	display:block;

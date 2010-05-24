@@ -17,9 +17,16 @@
 			</c:when>
 			<c:otherwise>
 				<h2><c:out value="${result.questionnaire}" /></h2>
+				<p>${result.questionnaire.description}</p>
+				<div class="tags">
+					<c:forEach items="${result.questionnaire.tags}" var="tag">
+						<span class="tag">${tag}</span>
+					</c:forEach>
+				</div>
+				<br />
 				
 				<c:if test="${connectedUser.admin}">
-					<a href="<spring:url value="/questionnaire/${result.questionnaire.id}/edit" />" class="button">
+					<a href="<spring:url value="/questionnaire/${result.questionnaire.id}/edit" />" class="pagination">
 						Modifier le questionnaire
 					</a>
 				</c:if>

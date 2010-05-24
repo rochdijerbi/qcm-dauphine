@@ -10,16 +10,7 @@
 	<c:set var="connectedUser" value="${sessionScope.connected_user}" />
 
 	<div id="content">
-		<div id="avatar">
-			<c:choose>
-				<c:when test="${not empty user.photo}">
-					<img height=100 src="<spring:url value="/user/photo" />" /></div>
-				</c:when>
-				<c:otherwise>
-					<img height=100 src="<spring:url value="/static/img/default_profile.jpg" />" />
-				</c:otherwise>
-			</c:choose>
-		</div>
+		<img src="<spring:url value="/user/photo" />" />
 
 		<h2>${user}</h2>
 		
@@ -43,9 +34,16 @@
 				</div>
 				
 				<h4>
-					<a href="<spring:url value="/result/${result.questionnaire.id}" />">
-						${result.questionnaire}
-					</a>
+					<c:choose>
+						<c:when test="${user.id == connectedUser.id}">
+							<a href="<spring:url value="/result/${result.questionnaire.id}" />">
+								${result.questionnaire}
+							</a>
+						</c:when>
+						<c:otherwise>
+							${result.questionnaire}
+						</c:otherwise>
+					</c:choose>
 				</h4>
 				
 				${result.questionnaire.description}
@@ -58,22 +56,24 @@
 			</div>
 		</c:forEach>
 
-<c:if test="${user.id == connectedUser.id or connectedUser.admin}">
-	<div class="user-editbox"><form:form modelAttribute="user">
-		<form:label path="photo">Avatar</form:label>
-		<form:input type="file" path="photo" />
-		<form:errors path="photo" />
-		<br />
-		<c:if test="${connectedUser.admin}">
-			<form:checkbox path="admin" value="${user.admin}" />
-			<form:label path="admin">Administrateur</form:label>
-			<form:errors path="admin" />
-			<br />
+		<c:if test="${user.id == connectedUser.id or connectedUser.admin}">
+			<div class="user-editbox">
+				<form:form modelAttribute="user" enctype="multipart/form-data">
+					<form:label path="uploadPhoto">Avatar</form:label>
+					<form:input type="file" path="uploadPhoto" />
+					<form:errors path="uploadPhoto" />
+					
+					<br />
+					<c:if test="${connectedUser.admin}">
+						<form:checkbox path="admin" value="${user.admin}" />
+						<form:label path="admin">Administrateur</form:label>
+						<form:errors path="admin" />
+						<br />
+					</c:if>
+			
+					<input type="submit" value="Modifier" />
+				</form:form>
+			</div>
 		</c:if>
-
-		<input type="submit" value="Modifier" />
-	</form:form></div>
-</c:if>
-
-</div>
+	</div>
 <jsp:include page="include/footer.jsp" />
