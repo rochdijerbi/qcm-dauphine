@@ -10,12 +10,12 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="shortcut icon" href="<spring:url value="/static/img/favicon.ico" />" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="<spring:url value="/static/css/qcm.css" />" />
+		<link rel="stylesheet" type="text/css" href="<spring:url value="/static/css/datePicker.css" />" />
 		
 		<script type="text/javascript" src="<spring:url value="/static/js/jquery.js" />"></script>
-		<script type="text/javascript" src="<spring:url value="/static/js/jquery.tagcloud.js" />"></script>
+		<script type="text/javascript" src="<spring:url value="/static/js/date.js" />"></script>
+		<script type="text/javascript" src="<spring:url value="/static/js/jquery.datePicker.js" />"></script>
 		<script type="text/javascript" src="<spring:url value="/static/js/qcm.js" />"></script>
-		<script type="text/javascript" src="<spring:url value="/static/js/jquery.tablesorter.min.js" />"></script>
-		<script type="text/javascript" src="<spring:url value="/static/js/jquery.flot.min.js" />"></script>
 	</head>
 
 	<body>
@@ -41,7 +41,7 @@
 				</a></li>
 				</c:if>
 			</ul>
-			<ul id="user">
+			<ul id="userHeader">
 				
 				<c:choose>
 					<c:when test="${not empty connectedUser}">

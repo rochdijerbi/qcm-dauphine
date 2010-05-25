@@ -16,7 +16,7 @@
 				</c:if>
 				
 				<li>
-					<span class="tag"><c:out value="${tag}" /></span>
+					<a href="<spring:url value="/tag/${tag}/0" />"><span class="tag"><c:out value="${tag}" /></span></a>
 					x ${tag.questionnairesSize}
 				</li>
 			</c:forEach>

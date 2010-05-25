@@ -19,12 +19,20 @@
 		<h2><c:out value="Derniers QCM ajoutés" /></h2>
 			<c:forEach items="${listLastQCM}" var="questionnaire">
 				<div class="list-box">
-					<div class="list-stat answered">
+					<c:choose>
+						<c:when test="${questionnaire.resultsSize == 0}">
+							<c:set var="classCount" value="unanswered" />
+						</c:when>
+						<c:otherwise>
+							<c:set var="classCount" value="answered" />
+						</c:otherwise>
+					</c:choose>
+					<div class="list-stat ${classCount}">
 						<span class="list-count">
 							${questionnaire.resultsSize}
 						</span>
 						hits
-					</div>	
+					</div>		
 					
 					<h4>
 						<a href="<spring:url value="/questionnaire/${questionnaire.id}" />"> 
@@ -35,7 +43,7 @@
 					
 					<div class="tags">
 						<c:forEach items="${questionnaire.tags}" var="tag">
-							<span class="tag">${tag}</span>
+							<a href="<spring:url value="/tag/${tag}/0" />"><span class="tag">${tag}</span></a>
 						</c:forEach>
 					</div>
 				</div>
@@ -44,7 +52,15 @@
 		<h2><c:out value="QCM les plus joués !" /></h2>
 			<c:forEach items="${listPopularQCM}" var="questionnaire">
 				<div class="list-box">
-					<div class="list-stat answered">
+					<c:choose>
+						<c:when test="${questionnaire.resultsSize == 0}">
+							<c:set var="classCount" value="unanswered" />
+						</c:when>
+						<c:otherwise>
+							<c:set var="classCount" value="answered" />
+						</c:otherwise>
+					</c:choose>
+					<div class="list-stat ${classCount}">
 						<span class="list-count">
 							${questionnaire.resultsSize}
 						</span>
@@ -60,7 +76,7 @@
 					
 					<div class="tags">
 						<c:forEach items="${questionnaire.tags}" var="tag">
-							<span class="tag">${tag}</span>
+							<a href="<spring:url value="/tag/${tag}/0" />"><span class="tag">${tag}</span></a>
 						</c:forEach>
 					</div>	
 				</div>

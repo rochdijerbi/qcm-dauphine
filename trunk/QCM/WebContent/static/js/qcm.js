@@ -3,6 +3,12 @@ $(document).ready(function () {
 	// Creation de questionnaire
 	bindAddQuestion();
 	bindAddAnchor();
+	datePickers();
+	
+	$('.answers input[type=checkbox]').unbind('click').click(function (e) {
+		$('.' + this.className).attr('checked', '');
+		$(this).attr('checked', 'checked');
+	});
 });
 
 /********************************************************************************************
@@ -50,14 +56,49 @@ function bindAddAnchor() {
 
 function bindDeleteAnchors() {
 
-	$('.deleteTag a').unbind('click').click(function (e) {
+	$('.tag a').unbind('click').click(function (e) {
 		e.preventDefault();
 		
 		$('#tags').load('/QCM/questionnaire/deleteTag/' + $(this).attr('rel'), null, function () {
 			bindDeleteAnchors();
 		});
 	});
+	
+	$('.questions a').unbind('click').click(function (e) {
+		e.preventDefault();
+		
+		var form = $('#questionnaire');
+		form.attr('action', '/QCM/questionnaire/deleteQuestion/' + $(this).attr('rel'));
+		form.submit();
+	});
 }
 
 /********************************************************************************************/
 
+function datePickers() {
+	$('.date-pick').datePicker();
+	
+	$('#start-date').bind(
+		'dpClosed',
+		function(e, selectedDates)
+		{
+			var d = selectedDates[0];
+			if (d) {
+				d = new Date(d);
+				$('#end-date').dpSetStartDate(d.addDays(1).asString());
+			}
+		}
+	);
+	
+	$('#end-date').bind(
+		'dpClosed',
+		function(e, selectedDates)
+		{
+			var d = selectedDates[0];
+			if (d) {
+				d = new Date(d);
+				$('#start-date').dpSetEndDate(d.addDays(-1).asString());
+			}
+		}
+	);
+}

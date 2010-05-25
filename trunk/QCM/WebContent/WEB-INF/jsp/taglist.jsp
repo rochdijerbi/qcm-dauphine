@@ -11,18 +11,10 @@
 <div id="content">
 	<h2><c:out value="Liste des questionnaires" /></h2>
 	<c:choose>
-		<c:when test="${not empty listQuestionnaire}">
-			<c:forEach items="${listQuestionnaire}" var="questionnaire">
+		<c:when test="${not empty listQuestionnaireByTag}">
+			<c:forEach items="${listQuestionnaireByTag}" var="questionnaire">
 				<div class="list-box">
-					<c:choose>
-						<c:when test="${questionnaire.resultsSize == 0}">
-							<c:set var="classCount" value="unanswered" />
-						</c:when>
-						<c:otherwise>
-							<c:set var="classCount" value="answered" />
-						</c:otherwise>
-					</c:choose>
-					<div class="list-stat ${classCount}">
+					<div class="list-stat answered">
 						<div class="list-count">
 							<c:out value="${questionnaire.resultsSize}" /> 
 						</div>
@@ -44,12 +36,12 @@
 			</c:forEach>
 			<br/>
 			<c:if test="${page > 0}">
-				<a href="<spring:url value="/questionnaire/questionnairelist/${page - 1}" />" id="pagination"> 
+				<a href="<spring:url value="/tag/${tag}/${page - 1}" />" id="pagination"> 
 					Précédent
 				</a>
 			</c:if>
 			<c:if test="${page < (nbQuestionnaires / nbResults) - 1}">
-				<a href="<spring:url value="/questionnaire/questionnairelist/${page + 1}" />" id="pagination"> 
+				<a href="<spring:url value="/tag/${tag}/${page + 1}" />" id="pagination"> 
 					Suivant
 				</a>
 			</c:if>

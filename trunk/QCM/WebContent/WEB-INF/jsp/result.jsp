@@ -5,7 +5,7 @@
 			<li>
 				<h3>score</h3>
 				
-				<c:out value="${fn:length(result.correctAnswers)}" />
+				<c:out value="${result.nbCorrectAnswers}" />
 					sur 
 				<c:out value="${fn:length(result.questionnaire.questions)}" />
 			</li>
@@ -36,8 +36,12 @@
 									<c:forEach items="${question.answers}" var="answer" varStatus="statusA">
 										<li>
 											${statusA.index+1}. ${answer}
-											<c:if test="${answer.correct}"> (Correct)</c:if>
-											<c:if test="${not answer.correct and dauphine:contains(result.answers, answer)}"> (Incorrect)</c:if>
+											<c:if test="${answer.correct}">
+												<span class="correct">(Correct)</span>
+											</c:if>
+											<c:if test="${not answer.correct and dauphine:contains(result.answers, answer)}">
+												<span class="incorrect">(Incorrect)</span>
+											</c:if>
 										</li>
 									</c:forEach>
 								</ul>
