@@ -33,8 +33,7 @@ public class QuestionnaireController {
 	/**
 	 * Nombre de resultats par page.
 	 */
-	private static final int NB_RESULTS_BY_PAGE = 2;
-
+	
 	@RequestMapping(value = "/questionnaire/{id}", method = RequestMethod.GET)
 	public String displayQuestionnairePage(@PathVariable("id") Long id,
 			HttpSession session, ModelMap model) {
@@ -154,6 +153,15 @@ public class QuestionnaireController {
 		return "questionnaire/edit";
 	}
 
+	@RequestMapping("/questionnaire/deleteQuestion/{index}")
+	public String deleteQuestion(
+			@ModelAttribute(IModelConstants.QUESTIONNAIRE) Questionnaire questionnaire,
+			@PathVariable("index") Integer index) {
+
+		questionnaire.getQuestions().remove(index.intValue());
+		return "questionnaire/edit";
+	}
+
 	@RequestMapping("/questionnaire/questionnairelist/{page}")
 	public String displayQuestionnaireList(@PathVariable("page") Integer page,
 			HttpSession session, ModelMap model) {
@@ -170,7 +178,7 @@ public class QuestionnaireController {
 			model.put(IModelConstants.NB_QUESTIONNAIRES, questionnaireService
 					.getNbQuestionnairesValid(false));
 		}
-		model.put(IModelConstants.NB_RESULTS, NB_RESULTS_BY_PAGE);
+		model.put(IModelConstants.NB_RESULTS, IModelConstants.RESULTS_BY_PAGE);
 		model.put(IModelConstants.PAGE, page);
 
 		return "questionnairelist";

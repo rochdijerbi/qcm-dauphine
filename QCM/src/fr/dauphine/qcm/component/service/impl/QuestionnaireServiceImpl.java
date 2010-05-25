@@ -1,5 +1,6 @@
 package fr.dauphine.qcm.component.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,11 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 
 		if (questionnaire != null) {
 			questionnaire.getTags().size(); // Lazy
-
+			questionnaire.getResults().size(); // Lazy
+			
+			// Les meilleurs scores en premier
+			Collections.sort(questionnaire.getResults());
+			
 			questionnaire.shuffleQuestions();
 
 			questionnaire = questionnaireRepository.unproxy(questionnaire);
