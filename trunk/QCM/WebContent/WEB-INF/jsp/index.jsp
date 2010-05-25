@@ -49,6 +49,8 @@
 				</div>
 			</c:forEach>
 		
+		<br />
+		
 		<h2><c:out value="QCM les plus joués !" /></h2>
 			<c:forEach items="${listPopularQCM}" var="questionnaire">
 				<div class="list-box">
