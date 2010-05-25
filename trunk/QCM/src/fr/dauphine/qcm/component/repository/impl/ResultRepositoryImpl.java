@@ -15,6 +15,9 @@ import fr.dauphine.qcm.model.Result;
 public final class ResultRepositoryImpl extends AbstractRepositoryImpl<Result>
 		implements IResultRepository {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Result loadByUserIdAndQuestionnaireId(Long userId,
 			Long questionnaireId) {
@@ -31,6 +34,9 @@ public final class ResultRepositoryImpl extends AbstractRepositoryImpl<Result>
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Result save(Result result) {
 		Closure refreshClosure = new RefreshClosure(getCurrentSession());
@@ -41,6 +47,9 @@ public final class ResultRepositoryImpl extends AbstractRepositoryImpl<Result>
 		return super.save(result);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Long getNbResults() {
 		Query query = getCurrentSession().createQuery("SELECT COUNT(*) FROM Result r");

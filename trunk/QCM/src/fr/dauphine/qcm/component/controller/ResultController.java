@@ -19,6 +19,12 @@ public class ResultController {
 	@Autowired
 	private IQuestionnaireService questionnaireService;
 
+
+	/**
+	 * Affiche les résultats
+	 * 
+	 * @return Vue des résultats
+	 */
 	@RequestMapping("/result/{id}")
 	public String displayResult(@PathVariable("id") Long id,
 			HttpSession session, ModelMap model) {

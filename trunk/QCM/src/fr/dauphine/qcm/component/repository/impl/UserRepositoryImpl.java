@@ -12,6 +12,9 @@ import fr.dauphine.qcm.model.User;
 public final class UserRepositoryImpl extends AbstractRepositoryImpl<User>
 		implements IUserRepository {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public User loadByLogin(String login) {
 		Criteria criteria = getCurrentSession().createCriteria(User.class);
@@ -20,6 +23,9 @@ public final class UserRepositoryImpl extends AbstractRepositoryImpl<User>
 		return (User) criteria.uniqueResult();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Long getNbUsers() {
 		Query query = getCurrentSession().createQuery("SELECT COUNT(*) FROM User u");

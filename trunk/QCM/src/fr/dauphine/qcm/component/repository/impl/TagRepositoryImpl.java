@@ -28,6 +28,9 @@ public class TagRepositoryImpl extends AbstractRepositoryImpl<Tag> implements
 		return criteria.list();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Questionnaire> getListQuestionnaireByTag(String idTag,
@@ -47,6 +50,9 @@ public class TagRepositoryImpl extends AbstractRepositoryImpl<Tag> implements
 		return query.list();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Long getListNbQuestionnairesValid(String idTag, boolean isAdmin) {
 		StringBuffer sql = new StringBuffer();

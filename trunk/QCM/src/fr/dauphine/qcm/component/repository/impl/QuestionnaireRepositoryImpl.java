@@ -22,6 +22,9 @@ public final class QuestionnaireRepositoryImpl extends
 		AbstractRepositoryImpl<Questionnaire> implements
 		IQuestionnaireRepository {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Questionnaire loadForUser(Long questionnaireId, Long userId) {
 		Query query = getCurrentSession()
@@ -34,6 +37,9 @@ public final class QuestionnaireRepositoryImpl extends
 		return (Questionnaire) query.uniqueResult();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Questionnaire save(Questionnaire questionnaire) {
 		Closure closure = new SaveOrUpdateClosure(getCurrentSession());
@@ -42,6 +48,9 @@ public final class QuestionnaireRepositoryImpl extends
 		return super.save(questionnaire);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings( { "unchecked" })
 	@Override
 	public List<Questionnaire> paginateListQuestionnaire(Integer page,
@@ -63,6 +72,9 @@ public final class QuestionnaireRepositoryImpl extends
 		return criteria.list();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Long getNbQuestionnaires() {
 		Query query = getCurrentSession().createQuery(
@@ -71,6 +83,9 @@ public final class QuestionnaireRepositoryImpl extends
 		return (Long) query.uniqueResult();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Questionnaire> getLastQuestionnaires(boolean admin) {
@@ -90,6 +105,9 @@ public final class QuestionnaireRepositoryImpl extends
 		return criteria.list();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Questionnaire> getPopularQuestionnaires(boolean admin) {
@@ -106,6 +124,9 @@ public final class QuestionnaireRepositoryImpl extends
 		return query.list();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Long getNbQuestionnairesValid(boolean admin) {
 		StringBuffer sql = new StringBuffer();
