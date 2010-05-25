@@ -1,8 +1,9 @@
 <jsp:include page="include/header.jsp" />
 	<%@ include file="include/taglib.jsp" %>
-	<div id="content">
-		<h2><c:out value="Login" /></h2>
-		<form:form modelAttribute="user">
+	<form:form modelAttribute="user">
+		<div id="content">
+			<h2><c:out value="Connexion" /></h2>
+		
 			<form:label path="login">Login</form:label>
 			<form:input path="login" />
 			<form:errors path="login" />
@@ -14,6 +15,6 @@
 			<br />
 			
 			<input type="submit" value="Login" />
-		</form:form>
-	</div>
+		</div>
+	</form:form>
 <jsp:include page="include/footer.jsp" />

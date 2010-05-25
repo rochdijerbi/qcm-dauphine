@@ -21,6 +21,11 @@ h1 {
 	margin-bottom:10px;
 }
 
+#advice label {
+	display:block;
+	clear:left;	
+}
+
 #advice input[type=text] {
 	display:block;
 	padding:5px;
@@ -29,6 +34,10 @@ h1 {
 	font-size:12pt;
 	display:block;
 	clear:both;
+}
+
+.date-pick {
+	float:left;
 }
 
 .definition {
@@ -174,7 +183,7 @@ a#addTag {
 	list-style:none;
 }
 
-input[type=checkbox].correct {
+.answers input[type=checkbox] {
 	float:left;
 	margin:10px 10px 0 10px;
 }
@@ -213,7 +222,7 @@ input[type=checkbox].correct {
 	height:40px;
 }
 
-#user li {
+#menu #userHeader li {
 	display:block;
 	float:right;
 }
@@ -328,3 +337,30 @@ input[type=checkbox].correct {
 	margin:4px;	
 }
 
+.avatar {
+	height:100px;	
+}
+
+.correct {
+	color:#80c756;
+}
+
+.incorrect {
+	color:#9A4444;
+}
+
+a.dp-choose-date {
+	float: left;
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	margin: 5px 3px 0;
+	display: block;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url('/QCM/static/img/calendar.png') no-repeat; 
+}
+a.dp-choose-date.dp-disabled {
+	background-position: 0 -20px;
+	cursor: default;
+}

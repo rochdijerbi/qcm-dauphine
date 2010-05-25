@@ -10,7 +10,7 @@
 	<c:set var="connectedUser" value="${sessionScope.connected_user}" />
 
 	<div id="content">
-		<img src="<spring:url value="/user/photo/${user.id}" />" />
+		<img class="avatar" alt="${user}" src="<spring:url value="/user/photo/${user.id}" />" />
 
 		<h2>${user}</h2>
 		
@@ -18,7 +18,7 @@
 			<div class="list-box">
 				<c:choose>
 					<c:when
-						test="${fn:length(result.correctAnswers)==fn:length(result.questionnaire.questions)}">
+						test="${result.nbCorrectAnswers == fn:length(result.questionnaire.questions)}">
 						<div class="list-stat answered">
 					</c:when>
 					<c:otherwise>
@@ -26,7 +26,7 @@
 					</c:otherwise>
 				</c:choose>
 					<span class="list-count">
-						${fn:length(result.correctAnswers)}
+						${result.nbCorrectAnswers}
 						/
 						${fn:length(result.questionnaire.questions)}
 					</span>
@@ -50,7 +50,7 @@
 				
 				<div class="tags">
 					<c:forEach items="${result.questionnaire.tags}" var="tag">
-						<span class="tag">${tag}</span>
+						<a href="<spring:url value="/tag/${tag}/0" />"><span class="tag">${tag}</span></a>
 					</c:forEach>
 				</div>
 			</div>

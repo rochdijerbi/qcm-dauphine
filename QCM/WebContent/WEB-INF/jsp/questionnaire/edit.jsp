@@ -16,13 +16,14 @@
 				<h3>dates</h3>
 				
 				<form:label path="start">Début</form:label>
-				<form:input path="start" />
+				<form:input path="start" cssErrorClass="inputError" cssClass="date-pick" id="start-date" />
 				<form:errors path="start" />
 				<br />
 				
 				<form:label path="end">Fin</form:label>
-				<form:input path="end" />
+				<form:input path="end" cssErrorClass="inputError" cssClass="date-pick" id="end-date" />
 				<form:errors path="end" />
+				<br />
 				<br />
 			</li>
 
@@ -53,12 +54,16 @@
 				<form:input path="title" cssErrorClass="inputError" />
 				
 				<form:label path="title">Description</form:label>
-				<form:textarea path="description" cssErrorClass="inputError" />
+				<form:textarea path="description" cssErrorClass="inputError" rows="1" cols="1" />
 				
 				<ul>
 					<c:forEach items="${questionnaire.questions}" var="question" varStatus="statusQ">
 						<li class="questions">
 								<h3>Question ${statusQ.index+1}</h3>
+								
+								<c:if test="${statusQ.index > 0}">
+									<a href="#" rel="${statusQ.index}">Supprimer la question</a>
+								</c:if>
 								
 								<form:input path="questions[${statusQ.index}].label" cssErrorClass="inputError" />
 								
@@ -68,7 +73,7 @@
 											<li>
 												<h4>Réponse ${statusA.index+1}</h4>
 												
-												<form:checkbox cssClass="correct" path="questions[${statusQ.index}].answers[${statusA.index}].correct" />
+												<form:checkbox cssClass="questions${statusQ.index}answers" path="questions[${statusQ.index}].answers[${statusA.index}].correct" />
 												
 												<form:input path="questions[${statusQ.index}].answers[${statusA.index}].label" cssErrorClass="inputError" />
 											</li>
