@@ -59,11 +59,11 @@
 				<ul>
 					<c:forEach items="${questionnaire.questions}" var="question" varStatus="statusQ">
 						<li class="questions">
-								<h3>Question ${statusQ.index+1}</h3>
-								
 								<c:if test="${statusQ.index > 0}">
-									<a href="#" rel="${statusQ.index}">Supprimer la question</a>
+									<a class="button" href="#" rel="${statusQ.index}">Supprimer la question</a>
 								</c:if>
+								
+								<h3>Question ${statusQ.index+1}</h3>
 								
 								<form:input path="questions[${statusQ.index}].label" cssErrorClass="inputError" />
 								

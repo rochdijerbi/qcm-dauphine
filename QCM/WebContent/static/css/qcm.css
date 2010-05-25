@@ -110,7 +110,7 @@ h1 {
 	background:#fae1e6;
 }
 
-#content input[type=submit], #content input[type=button], a#addTag, a#pagination, a#button {
+#content input[type=submit], #content input[type=button], a#addTag, a#pagination, a.button {
 	padding:5px 20px;
 	background:#a24571;
 	color:white;
@@ -124,8 +124,12 @@ h1 {
 	text-decoration:none;
 }
 
-#content input[type=submit]:hover, #content input[type=button]:hover {
+#content input[type=submit]:hover, #content input[type=button]:hover, a.button:hover {
 	background:#c34e80;	
+}
+
+a.button {
+	float:right;
 }
 
 /**
@@ -196,29 +200,28 @@ a#addTag {
  */
 
 .questions {
-	background:#f0f5fb;
-	border:5px solid #f0f5fb;
 	padding:10px;
-	-moz-border-radius:10px;
 	margin-top:10px;
 	margin-bottom:10px;
 	list-style:none;
+	border-top:1px dotted gray;
 }
 
 .questions h3, .questions h4 {
-	color:#506a87;
+	color:#0077ce;
 	margin:5px 0;
 }
 
-.questions:hover {
-	border:5px dashed #d4dfeb;
+.questions h4 {
+	color:gray;
 }
 
 .answers {
-	background:#d4dfeb;
 	padding:10px;
-	-moz-border-radius:10px;
 	margin-top:10px;	
+	margin-left:30px;
+	border-left:1px solid gray;
+	
 }
 
 .answers ul {

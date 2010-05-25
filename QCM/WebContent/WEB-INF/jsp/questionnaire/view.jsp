@@ -1,12 +1,24 @@
 <jsp:include page="../include/header.jsp" />
 	<%@include file="../include/taglib.jsp" %>
 	<c:set var="connectedUser" value="${sessionScope.connected_user}" />
+	<c:set var="nbQuestions" value="${fn:length(result.questionnaire.questions)}" />
+	
 	<c:if test="${connectedUser.admin}">
 		<ul id="advice">
 			<li>
 				<h3>meilleurs scores</h3>
 				<c:forEach items="${result.questionnaire.results}" var="score">
-					${score.user} (${score.nbCorrectAnswers} / ${fn:length(result.questionnaire.questions)})<br />
+					<c:choose>
+						<c:when test="${score.nbCorrectAnswers == nbQuestions}">
+							<strong>${score.user}</strong>
+							<img src="<spring:url value="/static/img/award_star_gold_1.png" />" alt="reward" />
+						</c:when>
+						<c:otherwise>
+							${score.user}
+						</c:otherwise>
+					</c:choose>
+					(${score.nbCorrectAnswers} / ${nbQuestions})
+					<br />
 				</c:forEach>
 			</li>
 		</ul>
@@ -21,18 +33,19 @@
 			<c:otherwise>
 				<h2><c:out value="${result.questionnaire}" /></h2>
 				<p>${result.questionnaire.description}</p>
+				
+				<c:if test="${connectedUser.admin and result.questionnaire.resultsSize == 0}">
+					<a href="<spring:url value="/questionnaire/${result.questionnaire.id}/edit" />" class="button">
+						Modifier le questionnaire
+					</a>
+				</c:if>
+				
 				<div class="tags">
 					<c:forEach items="${result.questionnaire.tags}" var="tag">
 						<a href="<spring:url value="/tag/${tag}/0" />"><span class="tag">${tag}</span></a>
 					</c:forEach>
 				</div>
 				<br />
-				
-				<c:if test="${connectedUser.admin and result.questionnaire.resultsSize == 0}">
-					<a href="<spring:url value="/questionnaire/${result.questionnaire.id}/edit" />" class="pagination">
-						Modifier le questionnaire
-					</a>
-				</c:if>
 				
 				<form:form modelAttribute="result">
 					<form:errors path="*" />
