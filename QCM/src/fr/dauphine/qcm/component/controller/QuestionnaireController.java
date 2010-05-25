@@ -29,11 +29,12 @@ public class QuestionnaireController {
 
 	@Autowired
 	private IQuestionnaireService questionnaireService;
-
-	/**
-	 * Nombre de resultats par page.
-	 */
 	
+	/**
+	 * Affiche le questionnaire
+	 * 
+	 * @return Vue du questionnaire 
+	 */
 	@RequestMapping(value = "/questionnaire/{id}", method = RequestMethod.GET)
 	public String displayQuestionnairePage(@PathVariable("id") Long id,
 			HttpSession session, ModelMap model) {
@@ -61,6 +62,11 @@ public class QuestionnaireController {
 		}
 	}
 
+	/**
+	 * Sauvegarde et affiche les résultats d'un questionnaire
+	 * 
+	 * @return Vue des résultats
+	 */
 	@RequestMapping(value = "/questionnaire/{id}", method = RequestMethod.POST)
 	public String processAnswersForm(
 			@Valid @ModelAttribute(IModelConstants.RESULT) Result result,
@@ -78,6 +84,11 @@ public class QuestionnaireController {
 		}
 	}
 
+	/**
+	 * Affiche la création d'un questionnaire
+	 * 
+	 * @return Vue de création d'un questionnaire
+	 */
 	@RequestMapping(value = "/questionnaire/create", method = RequestMethod.GET)
 	public String displayQuestionnaireCreationPage(HttpSession session,
 			ModelMap model) {
@@ -94,6 +105,11 @@ public class QuestionnaireController {
 		}
 	}
 
+	/**
+	 * Affiche un questionnaire en mode modification
+	 * 
+	 * @return Vue d'édition d'un questionnaire
+	 */
 	@RequestMapping(value = "/questionnaire/{id}/edit", method = RequestMethod.GET)
 	public String displayQuestionnaireEditionPage(@PathVariable("id") Long id,
 			HttpSession session, ModelMap model) {
@@ -110,6 +126,11 @@ public class QuestionnaireController {
 		}
 	}
 
+	/**
+	 * Sauvegarde les modifications d'un questionnaire
+	 * 
+	 * @return Vue du questionnaire
+	 */
 	@RequestMapping(value = { "/questionnaire/create",
 			"/questionnaire/{id}/edit" }, method = RequestMethod.POST)
 	public String handleQuestionnaireCreationAndModificationForm(
@@ -127,6 +148,11 @@ public class QuestionnaireController {
 		}
 	}
 
+	/**
+	 * Ajoute un tag
+	 * 
+	 * @return Vue du questionnaire
+	 */
 	@RequestMapping("/questionnaire/addTag/{tag}")
 	public String addTag(
 			@ModelAttribute(IModelConstants.QUESTIONNAIRE) Questionnaire questionnaire,
@@ -136,6 +162,11 @@ public class QuestionnaireController {
 		return "questionnaire/tags";
 	}
 
+	/**
+	 * Supprime un tag
+	 * 
+	 * @return Vue du questionnaire
+	 */
 	@RequestMapping("/questionnaire/deleteTag/{tag}")
 	public String deleteTag(
 			@ModelAttribute(IModelConstants.QUESTIONNAIRE) Questionnaire questionnaire,
@@ -145,6 +176,11 @@ public class QuestionnaireController {
 		return "questionnaire/tags";
 	}
 
+	/**
+	 * Ajoute une question
+	 * 
+	 * @return Vue du questionnaire
+	 */
 	@RequestMapping("/questionnaire/addQuestion")
 	public String addQuestion(
 			@ModelAttribute(IModelConstants.QUESTIONNAIRE) Questionnaire questionnaire) {
@@ -153,6 +189,11 @@ public class QuestionnaireController {
 		return "questionnaire/edit";
 	}
 
+	/**
+	 * Supprime une question
+	 * 
+	 * @return Vue du questionnaire
+	 */
 	@RequestMapping("/questionnaire/deleteQuestion/{index}")
 	public String deleteQuestion(
 			@ModelAttribute(IModelConstants.QUESTIONNAIRE) Questionnaire questionnaire,
@@ -162,6 +203,12 @@ public class QuestionnaireController {
 		return "questionnaire/edit";
 	}
 
+
+	/**
+	 * Affiche la liste des questionnaires
+	 * 
+	 * @return Vue de la liste des questionnaires
+	 */
 	@RequestMapping("/questionnaire/questionnairelist/{page}")
 	public String displayQuestionnaireList(@PathVariable("page") Integer page,
 			HttpSession session, ModelMap model) {

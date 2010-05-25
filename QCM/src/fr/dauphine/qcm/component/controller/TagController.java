@@ -19,12 +19,22 @@ public class TagController {
 	@Autowired
 	private ITagService tagService;
 
+	/**
+	 * Affiche le nuage de tags
+	 * 
+	 * @return Vue du nuage de tags
+	 */
 	@RequestMapping("/tag")
 	public String displayTagCloud(ModelMap model) {
 		model.put(IModelConstants.TAGS, tagService.getAll());
 		return "tag";
 	}
 	
+	/**
+	 * Affiche la liste des questionnaires pour ce tag
+	 * 
+	 * @return Vue de la liste des questionnaires pour ce tag
+	 */
 	@RequestMapping("/tag/{idTag}/{page}")
 	public String displayQuestionnaireList(@PathVariable("idTag") String idTag, @PathVariable("page") Integer page,
 			HttpSession session, ModelMap model) {

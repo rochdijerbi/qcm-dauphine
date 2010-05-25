@@ -25,11 +25,22 @@ public class SignupController {
 	@Autowired
 	private IUserService userService;
 
+
+	/**
+	 * Affiche l'inscription
+	 * 
+	 * @return Vue de l'inscription
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelMap displaySignupPage() {
 		return new ModelMap(IModelConstants.USER, new User());
 	}
 
+	/**
+	 * Enregistre l'inscription
+	 * 
+	 * @return Vue de l'acceuil
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public String handleSignupForm(
 			@Valid @ModelAttribute(IModelConstants.USER) User user,

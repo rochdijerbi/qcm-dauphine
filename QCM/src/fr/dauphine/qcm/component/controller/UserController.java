@@ -22,6 +22,11 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 
+	/**
+	 * Affiche le profil d'un utilisateur
+	 * 
+	 * @return Vue du profil d'un utilisateur
+	 */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
 	public String displayProfilePage(@PathVariable("id") Long id, ModelMap model) {
 		model.put(IModelConstants.USER, userService.getById(id));
@@ -29,6 +34,11 @@ public class UserController {
 		return "user";
 	}
 
+	/**
+	 * Enregistre les modifications apportées à un utilisateur
+	 * 
+	 * @return Vue du profil d'un utilisateur
+	 */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.POST)
 	public String handleEditForm(@ModelAttribute(IModelConstants.USER) User user) {
 
@@ -41,6 +51,11 @@ public class UserController {
 		return "user";
 	}
 
+	/**
+	 * Affiche la photo par défaut ou la photo enregistrée
+	 * 
+	 * @return Vue du profil d'un utilisateur
+	 */
 	@RequestMapping("/user/photo/{id}")
 	public String displayphoto(@PathVariable("id") Long id,
 			@ModelAttribute(IModelConstants.USER) User user, OutputStream output) {
