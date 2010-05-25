@@ -14,7 +14,15 @@
 		<c:when test="${not empty listQuestionnaireByTag}">
 			<c:forEach items="${listQuestionnaireByTag}" var="questionnaire">
 				<div class="list-box">
-					<div class="list-stat answered">
+				<c:choose>
+						<c:when test="${questionnaire.resultsSize == 0}">
+							<c:set var="classCount" value="unanswered" />
+						</c:when>
+						<c:otherwise>
+							<c:set var="classCount" value="answered" />
+						</c:otherwise>
+					</c:choose>
+					<div class="list-stat ${classCount}">
 						<div class="list-count">
 							<c:out value="${questionnaire.resultsSize}" /> 
 						</div>
