@@ -1,3 +1,7 @@
+/**
+ * Styles generiques
+ */
+
 * {
 	padding:0;
 	margin:0;
@@ -16,9 +20,35 @@ h1 {
 	color:white;
 }
 
-#content input[type=radio] {
-	margin-right:10px;
-	margin-bottom:10px;
+#container {
+	clear:both;
+	padding:15px;
+	background:white;
+	width:1000px;
+	margin:0 auto;
+}
+
+/**
+ * Bloc de droite
+ */
+
+#advice {
+	width:250px;
+	float:right;
+}
+
+#advice h3 {
+	font-size:15pt;
+	color:#57607e;
+	padding-bottom:10px;
+}
+
+#advice li {
+	display:block;
+	background:#dee6ef;
+	padding:10px;
+	margin-bottom:15px;
+	-moz-border-radius:10px;
 }
 
 #advice label {
@@ -40,14 +70,26 @@ h1 {
 	float:left;
 }
 
-.definition {
-	padding:5px;
-	-moz-border-radius:5px;
-	border:5px solid #d4dfeb;
-	font-size:12pt;
-	display:block;
-	clear:both;
-	width:750px;
+/**
+ * Bloc du centre
+ */
+
+#content {
+	margin-right:265px;
+	padding:10px;
+	padding-top:0;
+}
+
+#content h2 {
+	font-size:20pt;
+	padding-top:10px;
+	color:black;
+	border-bottom:1px solid black;
+}
+
+#content input[type=radio] {
+	margin-right:10px;
+	margin-bottom:10px;
 }
 
 #content input[type=text], #content input[type=password], #content textarea {
@@ -58,6 +100,37 @@ h1 {
 	font-size:12pt;
 	width:50%;
 }
+
+#content textarea {
+	height:100px;
+}
+
+.inputError {
+	border:1px solid #8b4d59;
+	background:#fae1e6;
+}
+
+#content input[type=submit], #content input[type=button], a#addTag, a#pagination, a#button {
+	padding:5px 20px;
+	background:#a24571;
+	color:white;
+	text-align:center;
+	font-weight:bold;	
+	-moz-border-radius:5px;
+	border:none;	
+	font-size:12pt;
+	cursor:pointer;
+	margin-right:10px;
+	text-decoration:none;
+}
+
+#content input[type=submit]:hover, #content input[type=button]:hover {
+	background:#c34e80;	
+}
+
+/**
+ * Nuage de tags
+ */
 
 #tagsCloud {
 	list-style:none;
@@ -113,37 +186,14 @@ h1 {
 	color:#3e6d8e;
 }
 
-#content textarea {
-	height:100px;
-}
-
-.inputError {
-	border:1px solid #8b4d59;
-	background:#fae1e6;
-}
-
-#content input[type=submit], #content input[type=button], a#addTag, a#pagination, a#button {
-	padding:5px 20px;
-	background:#a24571;
-	color:white;
-	text-align:center;
-	font-weight:bold;	
-	-moz-border-radius:5px;
-	border:none;	
-	font-size:12pt;
-	cursor:pointer;
-	margin-right:10px;
-	text-decoration:none;
-}
-
 a#addTag {
 	display:block;
 	margin-left:120px;
 }
 
-#content input[type=submit]:hover, #content input[type=button]:hover {
-	background:#c34e80;	
-}
+/**
+ * Affichage d'un questionnaire
+ */
 
 .questions {
 	background:#f0f5fb;
@@ -171,14 +221,6 @@ a#addTag {
 	margin-top:10px;	
 }
 
-.indexList {
-	padding:10px;
-	-moz-border-radius:10px;
-	margin-top:50px;	
-	width:750px;
-	border:5px solid #d4dfeb;
-}
-
 .answers ul {
 	list-style:none;
 }
@@ -187,6 +229,10 @@ a#addTag {
 	float:left;
 	margin:10px 10px 0 10px;
 }
+
+/**
+ * Menu de navigation
+ */
 
 #menu a img {
 	border:none;
@@ -227,45 +273,9 @@ a#addTag {
 	float:right;
 }
 
-#container {
-	clear:both;
-	padding:15px;
-	background:white;
-	width:1000px;
-	margin:0 auto;
-}
-
-#advice h3 {
-	font-size:15pt;
-	color:#57607e;
-	padding-bottom:10px;
-}
-
-#advice {
-	width:250px;
-	float:right;
-}
-
-#advice li {
-	display:block;
-	background:#dee6ef;
-	padding:10px;
-	margin-bottom:15px;
-	-moz-border-radius:10px;
-}
-
-#content {
-	margin-right:265px;
-	padding:10px;
-	padding-top:0;
-}
-
-#content h2 {
-	font-size:20pt;
-	padding-top:10px;
-	color:black;
-	border-bottom:1px solid black;
-}
+/**
+ * Pied de page
+ */
 
 #footer {
 	clear:both;
@@ -275,10 +285,9 @@ a#addTag {
 	padding-top:10px;
 }
 
-#avatar{
-	    width: 50px;
-        height: 100px;	
-}
+/**
+ * Listes (utilisateurs, questionnaires)
+ */
 
 .list-box {
 	border-bottom:1px dotted gray;
@@ -316,13 +325,9 @@ a#addTag {
 	font-size:18pt;
 }
 
-.answered {
-	background:#75845C;
-}
-
-.unanswered {
-	background:#9A4444;
-}
+/**
+ * Profil de l'utilisateur
+ */
 
 .user-editbox{
     position:absolute;
@@ -341,6 +346,18 @@ a#addTag {
 	height:100px;	
 }
 
+/**
+ * Couleurs rouge/vert
+ */
+
+.answered {
+	background:#75845C;
+}
+
+.unanswered {
+	background:#9A4444;
+}
+
 .correct {
 	color:#80c756;
 }
@@ -348,6 +365,10 @@ a#addTag {
 .incorrect {
 	color:#9A4444;
 }
+
+/**
+ * Composant datepicker (jQuery)
+ */
 
 a.dp-choose-date {
 	float: left;
@@ -360,6 +381,7 @@ a.dp-choose-date {
 	overflow: hidden;
 	background: url('/QCM/static/img/calendar.png') no-repeat; 
 }
+
 a.dp-choose-date.dp-disabled {
 	background-position: 0 -20px;
 	cursor: default;
