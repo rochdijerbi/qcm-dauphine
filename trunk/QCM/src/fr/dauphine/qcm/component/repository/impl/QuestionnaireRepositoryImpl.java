@@ -13,6 +13,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import fr.dauphine.qcm.closure.SaveOrUpdateClosure;
+import fr.dauphine.qcm.component.controller.IModelConstants;
 import fr.dauphine.qcm.component.repository.IQuestionnaireRepository;
 import fr.dauphine.qcm.model.Questionnaire;
 
@@ -84,7 +85,7 @@ public final class QuestionnaireRepositoryImpl extends
 					Restrictions.isNull("end")));
 		}
 		criteria.addOrder(Order.desc("datecreate"));
-		criteria.setMaxResults(NB_RESULTS_LAST_QCM);
+		criteria.setMaxResults(IModelConstants.NB_RESULTS_LAST_QCM);
 
 		return criteria.list();
 	}
@@ -100,7 +101,7 @@ public final class QuestionnaireRepositoryImpl extends
 		sql.append("ORDER BY resultsSize DESC");
 		
 		Query query = getCurrentSession().createQuery(sql.toString());
-		query.setMaxResults(NB_RESULTS_POPULAR_QCM);
+		query.setMaxResults(IModelConstants.NB_RESULTS_POPULAR_QCM);
 
 		return query.list();
 	}

@@ -21,6 +21,11 @@ public interface IModelConstants {
 	String USER = "user";
 	
 	/**
+	 * Tag recherche
+	 */
+	String TAG = "tag";
+	
+	/**
 	 * Liste de questionnaires
 	 */
 	String LIST_QUESTIONNAIRE = "listQuestionnaire";
@@ -39,6 +44,21 @@ public interface IModelConstants {
 	 * Nombre de resultats affiches par page
 	 */
 	String NB_RESULTS = "nbResults";
+	
+	/**
+	 * Nombre de resultats affiches par page
+	 */
+	int RESULTS_BY_PAGE = 2;
+	
+	/**
+	 * Nombre de derniers QCM ˆ afficher
+	 */
+	int NB_RESULTS_LAST_QCM = 5;
+	
+	/**
+	 * Nombre de qcm populaires ˆ afficher
+	 */
+	int NB_RESULTS_POPULAR_QCM = 5;
 	
 	/**
 	 * Code d'erreur

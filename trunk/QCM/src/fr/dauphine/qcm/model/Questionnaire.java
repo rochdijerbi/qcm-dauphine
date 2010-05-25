@@ -129,7 +129,7 @@ public class Questionnaire extends AbstractEntity {
 		this.end = end;
 	}
 
-	@AssertTrue
+	@AssertTrue(message = "la date de début doit être antérieure à celle de fin")
 	public boolean isPeriodValid() {
 		return getStart() == null || getEnd() == null
 				|| getStart().before(getEnd());

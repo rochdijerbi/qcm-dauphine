@@ -12,6 +12,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.proxy.HibernateProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import fr.dauphine.qcm.component.controller.IModelConstants;
 import fr.dauphine.qcm.component.repository.IAbstractRepository;
 import fr.dauphine.qcm.model.Identifiable;
 
@@ -24,14 +25,6 @@ import fr.dauphine.qcm.model.Identifiable;
 @SuppressWarnings("unchecked")
 public abstract class AbstractRepositoryImpl<T extends Identifiable> implements
 		IAbstractRepository<T> {
-
-	/**
-	 * Nombre de resultats par page.
-	 */
-	protected static final int NB_RESULTS_BY_PAGE = 2;
-	protected static final int NB_RESULTS_LAST_QCM = 5;
-	protected static final int NB_RESULTS_POPULAR_QCM = 5;
-
 	/**
 	 * Session factory Hibernate.
 	 */
@@ -123,13 +116,13 @@ public abstract class AbstractRepositoryImpl<T extends Identifiable> implements
 	}
 
 	protected void paginate(Criteria criteria, int page) {
-		criteria.setMaxResults(NB_RESULTS_BY_PAGE);
-		criteria.setFirstResult(NB_RESULTS_BY_PAGE * page);
+		criteria.setMaxResults(IModelConstants.RESULTS_BY_PAGE);
+		criteria.setFirstResult(IModelConstants.RESULTS_BY_PAGE * page);
 	}
 
 	protected void paginate(Query query, int page) {
-		query.setMaxResults(NB_RESULTS_BY_PAGE);
-		query.setFirstResult(NB_RESULTS_BY_PAGE * page);
+		query.setMaxResults(IModelConstants.RESULTS_BY_PAGE);
+		query.setFirstResult(IModelConstants.RESULTS_BY_PAGE * page);
 	}
 
 	public T unproxy(T entity) {

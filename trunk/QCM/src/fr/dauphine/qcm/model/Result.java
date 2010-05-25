@@ -14,6 +14,7 @@ import javax.validation.constraints.AssertTrue;
 
 import org.apache.commons.beanutils.BeanPropertyValueEqualsPredicate;
 import org.apache.commons.collections.CollectionUtils;
+import org.hibernate.annotations.Formula;
 
 @Entity
 public class Result extends AbstractEntity implements Comparable<Result> {
@@ -28,6 +29,17 @@ public class Result extends AbstractEntity implements Comparable<Result> {
 
 	@ManyToMany
 	private List<Answer> answers = new ArrayList<Answer>();
+
+	@Formula("(SELECT COUNT(*) FROM Result_Answer ra, Answer a WHERE ra.result_id = id AND a.id = ra.answers_id AND a.correct = 1)")
+	private Integer nbCorrectAnswers;
+	
+	public Integer getNbCorrectAnswers() {
+		return nbCorrectAnswers;
+	}
+
+	public void setNbCorrectAnswers(Integer nbCorrectAnswers) {
+		this.nbCorrectAnswers = nbCorrectAnswers;
+	}
 
 	public void setQuestionnaire(Questionnaire questionnaire) {
 		this.questionnaire = questionnaire;
@@ -80,6 +92,6 @@ public class Result extends AbstractEntity implements Comparable<Result> {
 
 	@Override
 	public int compareTo(Result o) {
-		return getCorrectAnswers().size() - o.getCorrectAnswers().size();
+		return o.getNbCorrectAnswers() - getNbCorrectAnswers();
 	}
 }
