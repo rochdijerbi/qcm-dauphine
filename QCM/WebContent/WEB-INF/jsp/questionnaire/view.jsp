@@ -10,11 +10,11 @@
 				<c:forEach items="${result.questionnaire.results}" var="score">
 					<c:choose>
 						<c:when test="${score.nbCorrectAnswers == nbQuestions}">
-							<strong>${score.user}</strong>
+							<a href="<spring:url value="/user/${score.user.id}" />"><strong>${score.user}</strong></a>
 							<img src="<spring:url value="/static/img/award_star_gold_1.png" />" alt="reward" />
 						</c:when>
 						<c:otherwise>
-							${score.user}
+							<a href="<spring:url value="/user/${score.user.id}" />">${score.user}</a>
 						</c:otherwise>
 					</c:choose>
 					(${score.nbCorrectAnswers} / ${nbQuestions})
