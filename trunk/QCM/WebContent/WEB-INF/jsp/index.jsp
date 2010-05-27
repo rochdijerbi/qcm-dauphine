@@ -11,7 +11,7 @@
 		<li>
 			<h3>Qu'est-ce qu'un QCM ?</h3>
 			<p>Un questionnaire à choix multiples (ou QCM) est un questionnaire dans lequel sont proposées plusieurs réponses pour chaque question.</p>
-			<p>Une ou plusieurs de ces réponses sont correctes.</p>
+			<p>Une seule de ces réponses est correcte.</p>
 		</li>
 	</ul>
 	
